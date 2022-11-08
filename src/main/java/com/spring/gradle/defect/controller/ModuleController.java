@@ -23,7 +23,7 @@ import com.spring.gradle.defect.util.*;
 //import antlr.collections.List;
 
 @RestController
-@RequestMapping("/DTS")
+@RequestMapping("module")
 public class ModuleController {
 
 	@Autowired
