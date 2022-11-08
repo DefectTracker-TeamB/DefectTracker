@@ -15,24 +15,24 @@ import com.spring.gradle.defect.dto.ModuleDto;
 import com.spring.gradle.defect.entity.Module;
 
 @Service
-public class ModuleServiceImplementation implements ModuleService{
+public class ModuleServiceImplementation implements ModuleService {
 
 	@Autowired
 	ModuleRepository moduleRepository;
-	
+
 	@Override
 	public void createModule(Module module) {
 		moduleRepository.save(module);
-		
+
 	}
 
 	@Override
 	public List<ModuleDto> getModule() {
-		List<ModuleDto> moduleDtos=new ArrayList<>();
-		List<Module>modules=moduleRepository.findAll();
-		
-		for(Module module:modules) {
-			ModuleDto moduleDto= new ModuleDto();
+		List<ModuleDto> moduleDtos = new ArrayList<>();
+		List<Module> modules = moduleRepository.findAll();
+
+		for (Module module : modules) {
+			ModuleDto moduleDto = new ModuleDto();
 			BeanUtils.copyProperties(module, moduleDto);
 			moduleDtos.add(moduleDto);
 		}
@@ -41,8 +41,8 @@ public class ModuleServiceImplementation implements ModuleService{
 
 	@Override
 	public ModuleDto getModuleDto(int id) {
-		Module module=moduleRepository.findById(id).get();
-		ModuleDto moduleDto= new ModuleDto();
+		Module module = moduleRepository.findById(id).get();
+		ModuleDto moduleDto = new ModuleDto();
 		BeanUtils.copyProperties(module, moduleDto);
 		return moduleDto;
 	}
@@ -51,15 +51,15 @@ public class ModuleServiceImplementation implements ModuleService{
 	@Transactional
 	public void deleteModule(int id) {
 		moduleRepository.deleteById(id);
-		
+
 	}
 
 	@Override
 	public void updateModule(Module module) {
-		Module exitModule=moduleRepository.findById(module.getId()).get();
+		Module exitModule = moduleRepository.findById(module.getId()).get();
 		BeanUtils.copyProperties(module, exitModule);
 		moduleRepository.save(exitModule);
-		
+
 	}
 
 }

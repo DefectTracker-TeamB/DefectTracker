@@ -23,54 +23,50 @@ import com.spring.gradle.defect.util.*;
 //import antlr.collections.List;
 
 @RestController
-@RequestMapping("/module")
+@RequestMapping("/DTS")
 public class ModuleController {
 
 	@Autowired
 	private ModuleService moduleService;
-	
-	
-	//Create
-	@PostMapping(Constants.CREATEMODULE)//("/createMod")
-	public ResponseEntity<Object> createModule(@RequestBody ModuleDto moduleDto){
-		Module mod=new Module();
+
+	// Create
+	@PostMapping(Constants.CREATEMODULE) // ("/createMod")
+	public ResponseEntity<Object> createModule(@RequestBody ModuleDto moduleDto) {
+		Module mod = new Module();
 		BeanUtils.copyProperties(moduleDto, mod);
 		moduleService.createModule(mod);
 		return ResponseEntity.ok(mod);
-		
+
 	}
-	
-	//Get all
-	@GetMapping(Constants.GETALLMODULE)//("Modules")
-	public ResponseEntity<Object> getModules(){
-		List<ModuleDto> moduleDtos= moduleService.getModule();
+
+	// Get all
+	@GetMapping(Constants.GETALLMODULE) // ("Modules")
+	public ResponseEntity<Object> getModules() {
+		List<ModuleDto> moduleDtos = moduleService.getModule();
 		return ResponseEntity.ok(moduleDtos);
 	}
-	
-	//Get By Id
-	@GetMapping(Constants.GETBYID)//("/module/{id}")
-	public ResponseEntity<Object> getModule(@PathVariable int id){
-		ModuleDto moduleDto=moduleService.getModuleDto(id);
+
+	// Get By Id
+	@GetMapping(Constants.GETBYID) // ("/module/{id}")
+	public ResponseEntity<Object> getModule(@PathVariable int id) {
+		ModuleDto moduleDto = moduleService.getModuleDto(id);
 		return ResponseEntity.ok(moduleDto);
 	}
-	
-	
-	//Update
-	@PutMapping(Constants.UPDATEMODULE)//("/update/{id}")
-	public ResponseEntity<Object> updateModule(@RequestBody ModuleDto moduleDto){
-		Module module= new Module();
+
+	// Update
+	@PutMapping(Constants.UPDATEMODULE) // ("/update/{id}")
+	public ResponseEntity<Object> updateModule(@RequestBody ModuleDto moduleDto) {
+		Module module = new Module();
 		BeanUtils.copyProperties(moduleDto, module);
 		moduleService.createModule(module);
 		return ResponseEntity.ok(module);
 	}
-	
-	
-	
-	//Delete
-	@DeleteMapping(Constants.DELETEMODULE)//("/delete/{id}")
-	public ResponseEntity<Object> deleteModule(@PathVariable int id){
+
+	// Delete
+	@DeleteMapping(Constants.DELETEMODULE) // ("/delete/{id}")
+	public ResponseEntity<Object> deleteModule(@PathVariable int id) {
 		moduleService.deleteModule(id);
 		return ResponseEntity.ok(id);
 	}
-	
+
 }

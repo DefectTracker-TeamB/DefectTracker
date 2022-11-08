@@ -9,7 +9,7 @@ import com.spring.gradle.defect.entity.Module;
 public interface ModuleRepository extends JpaRepository<Module, Integer>{
 
 	//@SuppressWarnings("unchecked")
-	Module save(Module module);
+	//Module save(Module module);
 
 
 }
