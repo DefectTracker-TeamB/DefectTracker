@@ -1,5 +1,10 @@
 package com.spring.gradle.defect.controller;
 
+<<<<<<< Updated upstream
+=======
+import java.util.List;
+
+>>>>>>> Stashed changes
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -43,5 +48,12 @@ public ResponseEntity<Object>deleteDefect(@PathVariable Long id){
 	defectService.deleteDefect(id);
 	return ResponseEntity.ok("Delete Successfully!");
 }
+<<<<<<< Updated upstream
+=======
+@GetMapping(Constants.GET_ALLDEFECT)
+public List<Defect> getAllDefect() {
+    return defectService.getAllDefect();
+}
+>>>>>>> Stashed changes
 
 }

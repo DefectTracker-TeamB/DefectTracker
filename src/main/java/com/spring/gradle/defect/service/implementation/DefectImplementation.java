@@ -1,5 +1,10 @@
 package com.spring.gradle.defect.service.implementation;
 
+<<<<<<< Updated upstream
+=======
+import java.util.List;
+
+>>>>>>> Stashed changes
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,7 +47,14 @@ public class DefectImplementation implements DefectService {
 	public void deleteDefect(Long id) {
 		defectRepository.deleteById(id);
 		}
+<<<<<<< Updated upstream
 	
 	
+=======
+	@Override
+    public List<Defect> getAllDefect() {
+        return defectRepository.findAll();
+    }
+>>>>>>> Stashed changes
 
 }
