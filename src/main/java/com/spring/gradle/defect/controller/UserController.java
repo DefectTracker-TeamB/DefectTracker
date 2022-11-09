@@ -20,19 +20,21 @@ import com.spring.gradle.defect.service.UserService;
 
                  //User CRUD 
 @RestController 
-//@RequestMapping("/user")
-public class UserController {
+public class UserController { 
 	@Autowired
     private UserService userService;
-	//
+	
 	// create user 
     @PostMapping("/createuser")
     public ResponseEntity<Object> saveUser(@RequestBody UserDto userDto) {
-    	User user = new User(); 
-    	BeanUtils.copyProperties(userDto,user );
-    	userService.saveUser(user);
-		return ResponseEntity.ok(user);
-       } 
+    User user = new User(); 
+    BeanUtils.copyProperties(userDto,user );
+    userService.saveUser(user);
+	return ResponseEntity.ok(user);
+   } 
+    
+    
+    
     // GET ALL USERS 
     @GetMapping("users")
     public ResponseEntity<Object> getUsers() {

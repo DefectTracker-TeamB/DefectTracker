@@ -19,19 +19,12 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	private Long id;
-	
-	//@Column(nullable = false, unique = true, length = 45)
 	private String email;
-	
-	//@Column(nullable = false,  length = 64)
 	private String password;
-
-	//@Column(nullable = false,  length = 40)
 	private String role;
-	// hii new save djhkjlfakutfgvujtfgutfgu
 	public User() {
 
-	} 
+	}  
 	public User(Long id, String email, String password, String role) {
 		super();
 		this.id = id;

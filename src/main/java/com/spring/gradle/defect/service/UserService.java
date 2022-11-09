@@ -11,7 +11,7 @@ public interface UserService {
 	UserDto getUserDto(Long id);
 	void deleteUser(long id);
 	java.util.List<UserDto> getUserDtos();
-	java.util.List<User> saveUsers(User user);    
+	java.util.List<User> saveUsers(User user);      
 
 }
 

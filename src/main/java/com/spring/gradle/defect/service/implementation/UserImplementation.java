@@ -1,6 +1,6 @@
 package com.spring.gradle.defect.service.implementation;
 
-import java.util.ArrayList;
+import java.util.ArrayList; 
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
@@ -20,10 +20,10 @@ public class UserImplementation implements UserService{
 	
 	@Override 
 	public void saveUser(User user) {
-		userRepository.save(user);
+		userRepository.save(user); 
 	} 
 	@Override
-	public UserDto getUserDto(Long id) {
+	public UserDto getUserDto(Long id) { 
 		User user = userRepository.findById(id).get();
 		UserDto userDto = new UserDto();
 		BeanUtils.copyProperties(user, userDto);
@@ -59,6 +59,8 @@ public class UserImplementation implements UserService{
 	public List<User> saveUsers(User user) {
 		return null;
 	}
+	
+	
 	
 	
 	
