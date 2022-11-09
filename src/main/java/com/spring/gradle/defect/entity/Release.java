@@ -36,9 +36,9 @@ public class Release implements Serializable {
 	@Column(name = "upload_file")
 	private String uploadFile;
 
-//	@OneToOne(targetEntity = Module.class, fetch = FetchType.EAGER)
-//	@JoinColumn(name = "id", nullable = false)
-//	private List<Module> module;
+	@OneToOne(targetEntity = Module.class, fetch = FetchType.EAGER)
+	@JoinColumn(name = "id", nullable = false)
+	private List<Module> module;
 
 	public Release() {
 		super();
@@ -85,13 +85,13 @@ public class Release implements Serializable {
 	}
 	//entity
 
-//	public List<Module> getModule() {
-//		return module;
-//	}
-//
-//	public void setModule(List<Module> module) {
-//		this.module = module;
-//	}
+	public List<Module> getModule() {
+		return module;
+	}
+
+	public void setModule(List<Module> module) {
+		this.module = module;
+	}
 
 	@Override
 	public String toString() {

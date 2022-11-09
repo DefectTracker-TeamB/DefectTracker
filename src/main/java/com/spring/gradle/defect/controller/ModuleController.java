@@ -45,9 +45,9 @@ public class ModuleController {
 		List<ModuleDto> moduleDtos = moduleService.getModule();
 		return ResponseEntity.ok(moduleDtos);
 	}
-
+//
 	// Get By Id
-	@GetMapping(Constants.GETBYID) // ("/module/{id}")
+	@GetMapping(Constants.GETBYMODULEID) // ("/module/{id}")
 	public ResponseEntity<Object> getModule(@PathVariable int id) {
 		ModuleDto moduleDto = moduleService.getModuleDto(id);
 		return ResponseEntity.ok(moduleDto);

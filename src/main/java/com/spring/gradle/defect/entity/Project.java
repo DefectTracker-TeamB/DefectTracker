@@ -1,6 +1,7 @@
 package com.spring.gradle.defect.entity;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -34,10 +35,10 @@ public class Project implements Serializable {
 	private String name;
 
 	@Column(name = "start_date")
-	private String startDate;
+	private Date startDate;
 
 	@Column(name = "end_date")
-	private String endDate;
+	private Date endDate;
 
 	@Column(name = "description")
 	private String description;
@@ -62,9 +63,8 @@ public class Project implements Serializable {
 		super();
 	}
 
-
-	public Project(int proId, String name, String startDate, String endDate, String description, String uploadFile,
-			String projectTeam, List<Module> module) {
+	public Project(int proId, String name, Date startDate, Date endDate, String description, String uploadFile,
+			String projectTeam) {
 		super();
 		this.proId = proId;
 		this.name = name;
@@ -73,7 +73,6 @@ public class Project implements Serializable {
 		this.description = description;
 		this.uploadFile = uploadFile;
 		this.projectTeam = projectTeam;
-		this.module = module;
 	}
 
 	public int getProId() {
@@ -92,19 +91,19 @@ public class Project implements Serializable {
 		this.name = name;
 	}
 
-	public String getStartDate() {
+	public Date getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(String startDate) {
+	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
 
-	public String getEndDate() {
+	public Date getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(String endDate) {
+	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
 
@@ -124,28 +123,14 @@ public class Project implements Serializable {
 		this.uploadFile = uploadFile;
 	}
 
-	
-	//User
-//	public List<User> getUser() {
-//		return user;
-//	}
-//
-//	public void setUser(List<User> user) {
-//		this.user = user;
-//	}
-
-	
 	public String getProjectTeam() {
 		return projectTeam;
 	}
-
 
 	public void setProjectTeam(String projectTeam) {
 		this.projectTeam = projectTeam;
 	}
 
-
-	//module
 	public List<Module> getModule() {
 		return module;
 	}
@@ -153,6 +138,12 @@ public class Project implements Serializable {
 	public void setModule(List<Module> module) {
 		this.module = module;
 	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	
 
 	
 

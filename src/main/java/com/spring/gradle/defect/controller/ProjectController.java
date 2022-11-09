@@ -44,7 +44,7 @@ public class ProjectController {
 	}
 
 	// GetById
-	@GetMapping(Constants.GETBYID) // ("/getById")
+	@GetMapping(Constants.GETBYPROJECTID) // ("/getById")
 	public ResponseEntity<Object> getProject(@PathVariable int id) {
 		ProjectDto projectDto = projectService.getProjectById(id);
 		return ResponseEntity.ok(projectDto);

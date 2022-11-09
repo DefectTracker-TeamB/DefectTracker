@@ -1,14 +1,15 @@
 package com.spring.gradle.defect.dto;
 
+import java.util.Date;
+
 public class ProjectDto {
 	private int proId;
 	private String name;
-	private String startDate;
-	private String endDate;
+	private Date startDate;
+	private Date endDate;
 	private String description;
 	private String uploadFile;
 	private String projectTeam;
-	
 	public int getProId() {
 		return proId;
 	}
@@ -21,16 +22,16 @@ public class ProjectDto {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getStartDate() {
+	public Date getStartDate() {
 		return startDate;
 	}
-	public void setStartDate(String startDate) {
+	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
-	public String getEndDate() {
+	public Date getEndDate() {
 		return endDate;
 	}
-	public void setEndDate(String endDate) {
+	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
 	public String getDescription() {

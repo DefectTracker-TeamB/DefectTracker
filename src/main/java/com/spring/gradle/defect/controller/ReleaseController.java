@@ -48,7 +48,7 @@ public class ReleaseController {
 	
 	
 	//Get by id
-	@GetMapping(Constants.GETBYID)
+	@GetMapping(Constants.GETBYRELEASEID)
 	public ResponseEntity<Object> getRelease(@PathVariable int id) {
 		ReleaseDto releaseDto = releaseService.getReleaseById(id);
 		return ResponseEntity.ok(releaseDto);
