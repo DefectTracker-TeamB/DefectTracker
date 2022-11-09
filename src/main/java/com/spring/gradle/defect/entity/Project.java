@@ -1,13 +1,17 @@
 package com.spring.gradle.defect.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "Project",catalog = "defect_tracker")
@@ -37,6 +41,10 @@ public class Project implements Serializable{
 	
 	@Column(name="upload_file")
 	private String uploadFile;
+	
+	@Transient
+    @OneToMany(mappedBy = "project",cascade = CascadeType.ALL)
+    private List<Module> module;
 
 	public Project() {
 		super();
@@ -98,6 +106,16 @@ public class Project implements Serializable{
 
 	public void setUploadFile(String uploadFile) {
 		this.uploadFile = uploadFile;
+	}
+
+	
+	
+	public List<Module> getModule() {
+		return module;
+	}
+
+	public void setModule(List<Module> module) {
+		this.module = module;
 	}
 
 	@Override

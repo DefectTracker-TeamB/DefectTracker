@@ -1,12 +1,16 @@
 package com.spring.gradle.defect.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -31,6 +35,11 @@ public class Module implements Serializable{
 	
 	@Column(name="description")
 	private String description;
+	
+	
+	@ManyToOne(targetEntity = Project.class,fetch = FetchType.EAGER)
+    @JoinColumn(name = "proId",nullable =false)
+    private List<Project> project;
 
 	public Module() {
 		super();
@@ -74,6 +83,14 @@ public class Module implements Serializable{
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public List<Project> getProject() {
+		return project;
+	}
+
+	public void setProject(List<Project> project) {
+		this.project = project;
 	}
 
 	
