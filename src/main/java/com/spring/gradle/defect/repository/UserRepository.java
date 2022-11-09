@@ -1,11 +1,5 @@
 package com.spring.gradle.defect.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+public interface UserRepository {
 
-import com.spring.gradle.defect.entity.User;
-
-public interface UserRepository extends JpaRepository <User, Long>{
-
-	User save(User user); 
-	
-} 
+}
