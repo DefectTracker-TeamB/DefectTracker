@@ -29,6 +29,6 @@ public class ReleaseDto {
 	public void setUploadFile(String uploadFile) {
 		this.uploadFile = uploadFile;
 	}
-	///dfbghnghmnjhmerghtyjyujku
+	
 	
 }
