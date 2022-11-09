@@ -1,17 +1,21 @@
 package com.spring.gradle.defect.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "release", catalog = "defect_tracker")
-public class Release implements Serializable{
+public class Release implements Serializable {
 
 	/**
 	 * 
@@ -22,15 +26,19 @@ public class Release implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
-	
+
 	@Column(name = "release_version")
-	private String releaseVersion ;
-	
+	private String releaseVersion;
+
 	@Column(name = "api_link")
-	private String apiLink ;
-	
+	private String apiLink;
+
 	@Column(name = "upload_file")
-	private String uploadFile ;
+	private String uploadFile;
+
+//	@OneToOne(targetEntity = Module.class, fetch = FetchType.EAGER)
+//	@JoinColumn(name = "id", nullable = false)
+//	private List<Module> module;
 
 	public Release() {
 		super();
@@ -75,6 +83,15 @@ public class Release implements Serializable{
 	public void setUploadFile(String uploadFile) {
 		this.uploadFile = uploadFile;
 	}
+	//entity
+
+//	public List<Module> getModule() {
+//		return module;
+//	}
+//
+//	public void setModule(List<Module> module) {
+//		this.module = module;
+//	}
 
 	@Override
 	public String toString() {
