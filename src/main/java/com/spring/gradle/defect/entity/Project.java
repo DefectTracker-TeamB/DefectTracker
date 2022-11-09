@@ -44,6 +44,9 @@ public class Project implements Serializable {
 
 	@Column(name = "upload_file")
 	private String uploadFile;
+	
+	@Column(name="project_team")
+	private String projectTeam;
 
 	//user
 //	@ManyToOne(targetEntity = User.class, fetch = FetchType.EAGER)
@@ -59,7 +62,9 @@ public class Project implements Serializable {
 		super();
 	}
 
-	public Project(int proId, String name, String startDate, String endDate, String description, String uploadFile) {
+
+	public Project(int proId, String name, String startDate, String endDate, String description, String uploadFile,
+			String projectTeam, List<Module> module) {
 		super();
 		this.proId = proId;
 		this.name = name;
@@ -67,6 +72,8 @@ public class Project implements Serializable {
 		this.endDate = endDate;
 		this.description = description;
 		this.uploadFile = uploadFile;
+		this.projectTeam = projectTeam;
+		this.module = module;
 	}
 
 	public int getProId() {
@@ -117,6 +124,7 @@ public class Project implements Serializable {
 		this.uploadFile = uploadFile;
 	}
 
+	
 	//User
 //	public List<User> getUser() {
 //		return user;
@@ -127,6 +135,16 @@ public class Project implements Serializable {
 //	}
 
 	
+	public String getProjectTeam() {
+		return projectTeam;
+	}
+
+
+	public void setProjectTeam(String projectTeam) {
+		this.projectTeam = projectTeam;
+	}
+
+
 	//module
 	public List<Module> getModule() {
 		return module;
@@ -136,10 +154,6 @@ public class Project implements Serializable {
 		this.module = module;
 	}
 
-	@Override
-	public String toString() {
-		return "Project [proId=" + proId + ", name=" + name + ", startDate=" + startDate + ", endDate=" + endDate
-				+ ", description=" + description + ", uploadFile=" + uploadFile + "]";
-	}
+	
 
 }

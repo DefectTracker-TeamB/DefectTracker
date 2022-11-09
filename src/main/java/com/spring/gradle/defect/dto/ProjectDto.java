@@ -7,6 +7,8 @@ public class ProjectDto {
 	private String endDate;
 	private String description;
 	private String uploadFile;
+	private String projectTeam;
+	
 	public int getProId() {
 		return proId;
 	}
@@ -43,5 +45,12 @@ public class ProjectDto {
 	public void setUploadFile(String uploadFile) {
 		this.uploadFile = uploadFile;
 	}
+	public String getProjectTeam() {
+		return projectTeam;
+	}
+	public void setProjectTeam(String projectTeam) {
+		this.projectTeam = projectTeam;
+	}
+	
 	
 }
