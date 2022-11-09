@@ -6,17 +6,20 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name = "Project",catalog = "defect_tracker")
-public class Project implements Serializable{
-	
+@Table(name = "Project", catalog = "defect_tracker")
+public class Project implements Serializable {
+
 	/**
 	 * 
 	 */
@@ -24,27 +27,33 @@ public class Project implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="pro_id")
+	@Column(name = "pro_id")
 	private int proId;
-	
-	@Column(name="name")
+
+	@Column(name = "name")
 	private String name;
-	
-	@Column(name="start_date")
+
+	@Column(name = "start_date")
 	private String startDate;
-	
-	@Column(name="end_date")
+
+	@Column(name = "end_date")
 	private String endDate;
-	
-	@Column(name="description")
+
+	@Column(name = "description")
 	private String description;
-	
-	@Column(name="upload_file")
+
+	@Column(name = "upload_file")
 	private String uploadFile;
-	
+
+	//user
+//	@ManyToOne(targetEntity = User.class, fetch = FetchType.EAGER)
+//	@JoinColumn(name = "id", nullable = false)
+//	private List<User> user;
+
+	//module
 	@Transient
-    @OneToMany(mappedBy = "project",cascade = CascadeType.ALL)
-    private List<Module> module;
+	@OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
+	private List<Module> module;
 
 	public Project() {
 		super();
@@ -108,8 +117,17 @@ public class Project implements Serializable{
 		this.uploadFile = uploadFile;
 	}
 
+	//User
+//	public List<User> getUser() {
+//		return user;
+//	}
+//
+//	public void setUser(List<User> user) {
+//		this.user = user;
+//	}
+
 	
-	
+	//module
 	public List<Module> getModule() {
 		return module;
 	}

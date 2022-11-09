@@ -3,6 +3,7 @@ package com.spring.gradle.defect.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,7 +12,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "module",catalog = "defect_tracker")
@@ -36,10 +39,15 @@ public class Module implements Serializable{
 	@Column(name="description")
 	private String description;
 	
-	
 	@ManyToOne(targetEntity = Project.class,fetch = FetchType.EAGER)
     @JoinColumn(name = "proId",nullable =false)
     private List<Project> project;
+	
+	
+	@Transient
+    @OneToMany(mappedBy = "module",cascade = CascadeType.ALL)
+    private List<Release> release;
+	 
 
 	public Module() {
 		super();
@@ -91,6 +99,14 @@ public class Module implements Serializable{
 
 	public void setProject(List<Project> project) {
 		this.project = project;
+	}
+
+	public List<Release> getRelease() {
+		return release;
+	}
+
+	public void setRelease(List<Release> release) {
+		this.release = release;
 	}
 
 	
