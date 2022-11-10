@@ -1,16 +1,9 @@
 package com.spring.gradle.defect.entity;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -22,6 +15,15 @@ public class User {
 	private String email;
 	private String password;
 	private String role;
+	
+	// Mapping 
+		// User and Employee 
+//		@OneToMany(cascade = CascadeType.ALL)
+//		@JoinColumn(name = "Employee_id",nullable = false)
+//		private List<Employee> employee;
+	
+	
+	
 	public User() {
 
 	}  
@@ -32,10 +34,6 @@ public class User {
 		this.password = password;
 		this.role = role;
 	}
-	// Mapping 
-	// User and Employee 
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "Employee_id",nullable = false)
 	
 
 
