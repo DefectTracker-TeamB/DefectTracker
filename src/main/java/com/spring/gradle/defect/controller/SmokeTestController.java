@@ -27,7 +27,7 @@ public class SmokeTestController {
 	private SmokeTestService smoketestService;
 
 	//create
-	@PostMapping(Constants.CREATESMOKETEST)
+	@PostMapping(Constants.CREATESMOKE)
 	public ResponseEntity<Object> saveSmokeTest(@RequestBody SmokeTestDto smoketestDto) {
 		SmokeTest smoketest = new SmokeTest();
 		BeanUtils.copyProperties(smoketestDto, smoketest);
@@ -36,21 +36,21 @@ public class SmokeTestController {
 	}
 
 	// GET ALL SmokeTests
-	@GetMapping(Constants.GETALLSMOKETEST)
+	@GetMapping(Constants.GETALLSMOKE)
 	public ResponseEntity<Object> getSmokeTests() {
 		List<SmokeTestDto> smoketestDtos = smoketestService.getSmokeTest();
 		return ResponseEntity.ok(smoketestDtos);
 	}
 
 	// Get By Id
-	@GetMapping(Constants.GETBYID)
+	@GetMapping(Constants.GETBYSMOKEID)
 	public ResponseEntity<Object> getSmokeTests(@PathVariable Long id) {
 		SmokeTestDto smokeTestDto = smoketestService.getSmokeTestDto(id);
 		return ResponseEntity.ok(smokeTestDto);
 	}
 
 	// Update
-	@PutMapping(Constants.UPDATESMOKETEST)
+	@PutMapping(Constants.UPDATESMOKE)
 	public ResponseEntity<Object> updateSmokeTests(@RequestBody SmokeTestDto smokeTestDto) {
 		SmokeTest smoketest = new SmokeTest();
 		BeanUtils.copyProperties(smokeTestDto, smoketest);
@@ -59,7 +59,7 @@ public class SmokeTestController {
 	}
 
 	 // Delete
-	@DeleteMapping(Constants.DELETESMOKETEST) 
+	@DeleteMapping(Constants.DELETESMOKE) 
 	public ResponseEntity<Object> deleteSmokeTests(@PathVariable Long id) {
 		smoketestService.deleteSmokeTest(id);
 		return ResponseEntity.ok(id);

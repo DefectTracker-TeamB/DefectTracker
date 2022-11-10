@@ -19,6 +19,14 @@ public class Constants {
 	public static final String GETBYRELEASEID="/getById/{id}";
 	public static final String DELETERELEASE="/delete/{id}";
 	public static final String UPDATERELEASE="/update";
+	
+	
+	
+	public static final String CREATESMOKE="/create";
+	public static final String GETALLSMOKE="/getAll";
+	public static final String GETBYSMOKEID="/getById/{id}";
+	public static final String DELETESMOKE="/delete/{id}";
+	public static final String UPDATESMOKE="/update";
 
 	
 	
