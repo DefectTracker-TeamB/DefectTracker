@@ -25,7 +25,7 @@ public class Status implements Serializable  {
 //	    private List<User> user;
 //		 
 	//	
-	//	
+	//	ytdyuruyruyftyruyruyfytryt
 //	 	@ManyToOne(targetEntity = Defect.class,fetch = FetchType.EAGER)
 //	    @JoinColumn(name = "id",nullable =false)
 //	    private List<Defect> defect;
