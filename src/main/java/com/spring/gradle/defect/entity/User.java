@@ -1,5 +1,6 @@
 package com.spring.gradle.defect.entity;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -85,5 +86,6 @@ public class User {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
 
 }
