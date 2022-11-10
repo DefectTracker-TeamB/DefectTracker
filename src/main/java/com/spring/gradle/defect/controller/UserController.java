@@ -1,5 +1,7 @@
 package com.spring.gradle.defect.controller;
 
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -40,6 +42,16 @@ public class UserController {
 //    	List<UserDto> userDtos = userService.getUserDtos();
 //    	return ResponseEntity.ok(userDtos);
 //    }
+    
+   
+//     // Get all
+	@GetMapping("users") 
+	public ResponseEntity<Object> getUsers() {
+		List<UserDto> userDtos =userService.getUsers();
+		return ResponseEntity.ok(userDtos);
+	}
+//     
+    
     @GetMapping("user/{id}")
     public ResponseEntity<Object> getUser(@PathVariable Long id){
     	UserDto userDto = userService.getUserDto(id);

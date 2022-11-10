@@ -2,9 +2,12 @@ package com.spring.gradle.defect.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,6 +25,14 @@ public class SmokeTest {
 	private String status;
 	@Column(name = "description")
 	private String description;
+	
+	//entity
+//	
+//	@OneToOne(targetEntity = Release.class,fetch = FetchType.EAGER)
+//    @JoinColumn(name = "id",nullable =false)
+//	private Release release;
+	
+	
 	public SmokeTest() {
 		super();
 	}
@@ -56,6 +67,15 @@ public class SmokeTest {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	//entity
+//	public Release getRelease() {
+//		return release;
+//	}
+//	public void setRelease(Release release) {
+//		this.release = release;
+//	}
+//	
 	
 	
 	

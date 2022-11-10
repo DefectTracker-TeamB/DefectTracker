@@ -1,5 +1,8 @@
 package com.spring.gradle.defect.service.implementation;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,6 +41,18 @@ public class UserImplementation implements UserService{
 	@Transactional
 	public void deleteUser(long id) {
 		userRepository.deleteById(id);
+	}
+	@Override
+	public List<UserDto> getUsers() {
+		List<UserDto> userDtos = new ArrayList<>();
+		List<User> users = userRepository.findAll();
+		
+		for(User user:users) {
+			UserDto userDto = new UserDto();
+			BeanUtils.copyProperties(user, userDto);
+			userDtos.add(userDto);
+		}
+		return userDtos; 
 	} 
 	
 //	@Override 

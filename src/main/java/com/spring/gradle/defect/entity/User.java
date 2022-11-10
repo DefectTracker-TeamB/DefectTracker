@@ -7,35 +7,36 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "users") 
-public class User { 
+@Table(name = "users")
+public class User {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	private String name;
 	private String email;
 	private String password;
+	private String status;
 	private String role;
-	
-	// Mapping 
-		// User and Employee 
+
+	// Mapping
+	// User and Employee
 //		@OneToMany(cascade = CascadeType.ALL)
 //		@JoinColumn(name = "Employee_id",nullable = false)
 //		private List<Employee> employee;
-	
-	
-	
+
 	public User() {
 
-	}  
-	public User(Long id, String email, String password, String role) {
+	}
+
+	public User(Long id, String name, String email, String password, String status, String role) {
 		super();
 		this.id = id;
+		this.name = name;
 		this.email = email;
 		this.password = password;
+		this.status = status;
 		this.role = role;
 	}
-	
-
 
 	public Long getId() {
 		return id;
@@ -68,13 +69,21 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	
 
+	public String getName() {
+		return name;
+	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
 
-	
+	public String getStatus() {
+		return status;
+	}
 
-		
-	
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 }

@@ -19,7 +19,7 @@ import com.spring.gradle.defect.entity.SmokeTest;
 import com.spring.gradle.defect.service.SmokeTestService;
 import com.spring.gradle.defect.util.Constants;
 
-@RequestMapping("smokeTest")
+@RequestMapping("/smokeTest")
 @RestController
 public class SmokeTestController {
 

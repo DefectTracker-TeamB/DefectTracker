@@ -3,8 +3,10 @@ package com.spring.gradle.defect.dto;
 public class UserDto { 
 	
 	private Long id;
+	private String name;
 	private String email;
 	private String password;
+	private String status;
 	private String role;
 	
 
@@ -32,5 +34,18 @@ public class UserDto {
 	public void setRole(String role) {
 		this.role = role;
 	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
 	
 } 
