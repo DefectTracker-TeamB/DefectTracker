@@ -1,5 +1,5 @@
 package com.spring.gradle.defect.service.implementation;
 
-public class ProjectImplementation {
+public class List {
 
 }
