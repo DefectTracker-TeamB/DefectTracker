@@ -6,15 +6,9 @@ import com.spring.gradle.defect.dto.StatusDto;
 import com.spring.gradle.defect.entity.Status;
 
 public interface StatusService {
-	
-	  public void saveStatus(Status status);
-
-		public List<StatusDto> getAllStatus();
-
-		public StatusDto getStatusById(Long id);
-
-		public void deleteStatus(Long id);
-
-		public void updateStatus(Status status);
-
+  void saveStatus(Status status);
+StatusDto getStatusById(Long id);
+Status updateStatus(Status status);
+void deleteStatus(Long id);
+List<Status> getAllStatus();
 }
