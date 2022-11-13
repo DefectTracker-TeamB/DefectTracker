@@ -16,61 +16,54 @@ import com.spring.gradle.defect.service.UserService;
 @Service
 public class UserImplementation implements UserService{ 
 	@Autowired 
-	UserRepository userRepository; 
+	private UserRepository userRepository;
 	
 	@Override 
-	public void saveUser(User user) {
-		userRepository.save(user); 
+	public void saveUser(UserDto userDto) {
+		User user=new User();
+		user.setEmp_id(userDto.getEmp_id());
+		user.setDesignation(userDto.getDesignation());
+		user.setAvailability(100);
+		user.setName(userDto.getName());
+		user.setUsername(userDto.getUserName());
+		user.setPassword(userDto.getPassword());
+		userRepository.save(user);
 	} 
 	@Override
-	public UserDto getUserDto(Long id) { 
-		User user = userRepository.findById(id).get();
-		UserDto userDto = new UserDto();
-		BeanUtils.copyProperties(user, userDto);
-		return userDto; 
+	public User getUserById(int id) {
+		return userRepository.findById(id).get();
 	}
 	//UPDATE 
 	@Override
-	public void updateUser(User user) {
-		User existingUser = userRepository.findById(user.getId()).get();
-		BeanUtils.copyProperties(user, existingUser);
-		userRepository.save(existingUser);
+	public void updateUser(UserDto userDto) {
+		User user=userRepository.findById(userDto.getId()).get();
+		user.setEmp_id(userDto.getEmp_id());
+		user.setDesignation(userDto.getDesignation());
+		user.setName(userDto.getName());
+		user.setUsername(userDto.getUserName());
+		user.setPassword(userDto.getPassword());
+		userRepository.save(user);
 	}
 	//DELETE 
-	@Override 
-	@Transactional
-	public void deleteUser(long id) {
-		userRepository.deleteById(id);
+	@Override
+	public String deleteUserByEmpId(int emp_id) {
+		User user=userRepository.getUserByEmpId(emp_id);
+		if(user!=null){
+			userRepository.deleteById(user.getId());
+			return "user removed";
+		}else {
+			return "user doesn't exists";
+		}
 	}
 	@Override
-	public List<UserDto> getUsers() {
-		List<UserDto> userDtos = new ArrayList<>();
-		List<User> users = userRepository.findAll();
-		
-		for(User user:users) {
-			UserDto userDto = new UserDto();
-			BeanUtils.copyProperties(user, userDto);
-			userDtos.add(userDto);
-		}
-		return userDtos; 
-	} 
-	
-//	@Override 
-//	public List<UserDto>  getUserDtos() {
-//		List<UserDto> userDtos = new ArrayList<>();
-//		List<User> users = userRepository.findAll();
-//		
-//		for(User user:users) {
-//			UserDto userDto = new UserDto();
-//			BeanUtils.copyProperties(user, userDto);
-//			userDtos.add(userDto);
-//		}
-//		return userDtos; 
-//	}
-//	
-	
-	
-	
-	
+	public List<User> getUsersByAvailability() {
+		return userRepository.getByAvailability();
+	}
+
+	@Override
+	public User getUserByEmpId(int emp_id) {
+		return userRepository.getUserByEmpId(emp_id);
+	}
+
 
 }

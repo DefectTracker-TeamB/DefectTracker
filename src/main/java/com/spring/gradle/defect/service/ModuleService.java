@@ -6,14 +6,14 @@ import com.spring.gradle.defect.entity.Module;
 import com.spring.gradle.defect.dto.ModuleDto;
 
 public interface ModuleService {
-	public void createModule(Module module);
+	public void createModule(ModuleDto moduleDto);
 
-	public List<ModuleDto> getModule();
+	public List<Module> getAllModule();
 
-	public ModuleDto getModuleDto(int id);
+	public Module getModuleById(int id);
 
 	public void deleteModule(int id);
 
-	public void updateModule(Module module);
+	public void updateModule(ModuleDto moduleDto);
 
 }

@@ -1,9 +1,9 @@
 package com.spring.gradle.defect.service.implementation;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.BeanUtils;
+import com.spring.gradle.defect.entity.Releases;
+import com.spring.gradle.defect.repository.ReleaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.spring.gradle.defect.dto.SmokeTestDto;
@@ -16,50 +16,45 @@ public class SmokeTestImplementation implements SmokeTestService {
 
 	@Autowired
 	private SmokeTestRepository smokeRepository;
+	@Autowired
+	private ReleaseRepository releaseRepository;
+
 
 	@Override
-	public void createSmokeTest(SmokeTest smokeTest) {
+	public void saveTest(SmokeTestDto smokeTestDto) {
+		SmokeTest smokeTest=new SmokeTest();
+		Releases releases=releaseRepository.findById(smokeTestDto.getReleases_id()).get();
+		smokeTest.setPost_by(smokeTestDto.getPost_by());
+		smokeTest.setStatus(smokeTestDto.getStatus());
+		smokeTest.setDescription(smokeTestDto.getDescription());
+		smokeTest.setReleases(releases);
 		smokeRepository.save(smokeTest);
-
 	}
 
 	@Override
-	public List<SmokeTestDto> getSmokeTest() {
+	public List<SmokeTest> getAllSmokeTests() {
 		// TODO Auto-generated method stub
-
-		List<SmokeTestDto> smokeTestDtos = new ArrayList<>();
-		List<SmokeTest> smokeTests = smokeRepository.findAll();
-
-		for (SmokeTest smokeTest : smokeTests) {
-			SmokeTestDto smokeTestDto = new SmokeTestDto();
-			BeanUtils.copyProperties(smokeTest, smokeTestDto);
-			smokeTestDtos.add(smokeTestDto);
-		}
-		return smokeTestDtos;
+		return smokeRepository.findAll();
 	}
 
 	@Override
-	public SmokeTestDto getSmokeTestDto(Long id) {
-		SmokeTest smokeTest = smokeRepository.findById(id).get();
-		SmokeTestDto smokeTestDto = new SmokeTestDto();
-		BeanUtils.copyProperties(smokeTest, smokeTestDto);
-
-		return smokeTestDto;
+	public SmokeTest getSmokeTestById(int id) {
+		return  smokeRepository.findById(id).get();
 	}
 
 	@Override
-	public void deleteSmokeTest(Long id) {
-		smokeRepository.deleteById(id);
-
+	public void editSmokeById(SmokeTestDto smokeTestDto) {
+		SmokeTest smokeTest=smokeRepository.findById(smokeTestDto.getId()).get();
+		Releases releases=releaseRepository.findById(smokeTestDto.getReleases_id()).get();
+		smokeTest.setPost_by(smokeTestDto.getPost_by());
+		smokeTest.setStatus(smokeTestDto.getStatus());
+		smokeTest.setDescription(smokeTestDto.getDescription());
+		smokeTest.setReleases(releases);
+		smokeRepository.save(smokeTest);
 	}
 
-	@Override
-	public void updateSmokeTest(SmokeTest smokeTest) {
-		SmokeTest exitSmokeTest = smokeRepository.findById(smokeTest.getId()).get();
-		BeanUtils.copyProperties(smokeTest, exitSmokeTest);
-		smokeRepository.save(exitSmokeTest);
-		 
-
-	}
 
 }
+
+
+

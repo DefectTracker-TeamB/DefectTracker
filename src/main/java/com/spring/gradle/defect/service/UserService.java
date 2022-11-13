@@ -7,29 +7,13 @@ import com.spring.gradle.defect.entity.User;
 
 public interface UserService {
 
-	void saveUser(User user);
-	void updateUser(User user);
-	UserDto getUserDto(Long id);
-	void deleteUser(long id);
-	List<UserDto> getUsers();
-	
-	
-	/*
-	 **public void createModule(Module module);
+	void saveUser(UserDto userDto);
+	void updateUser(UserDto userDto);
+	User getUserById(int id);
+	String deleteUserByEmpId(int emp_id);
+	List<User> getUsersByAvailability();
 
-	public List<UserDto> getUsers();
-
-	public ModuleDto getModuleDto(int id);
-
-	public void deleteModule(int id);
-
-	//*public void updateModule(Module module);
-	 * 
-	 * 
-	 * 
-	 */
-//	java.util.List<UserDto> getUserDtos();
-//	java.util.List<User> saveUsers(User user);      
+	User getUserByEmpId(int emp_id);
 
 }
 

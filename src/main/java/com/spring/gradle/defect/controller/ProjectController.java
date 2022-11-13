@@ -29,40 +29,34 @@ public class ProjectController {
 	// Create project
 	@PostMapping(Constants.CREATEPROJECT) // ("/create")
 	public ResponseEntity<Object> createProject(@RequestBody ProjectDto projectDto) {
-		Project project = new Project();
-		BeanUtils.copyProperties(projectDto, project);
-		projectService.createProject(project);
-		return ResponseEntity.ok(project);
+		projectService.createProject(projectDto);
+		return ResponseEntity.ok("Project created");
 
 	}
 
 	// GetAll
 	@GetMapping(Constants.GETALLPROJECT) // ("/getAll")
 	public ResponseEntity<Object> getProject() {
-		List<ProjectDto> projectDtos = projectService.getAllProject();
-		return ResponseEntity.ok(projectDtos);
+		return ResponseEntity.ok(projectService.getAllProject());
 	}
 
 	// GetById
 	@GetMapping(Constants.GETBYPROJECTID) // ("/getById")
 	public ResponseEntity<Object> getProject(@PathVariable int id) {
-		ProjectDto projectDto = projectService.getProjectById(id);
-		return ResponseEntity.ok(projectDto);
+		return ResponseEntity.ok(projectService.getProjectById(id));
 	}
 
 	// Delete
 	@DeleteMapping(Constants.DELETEPROJECT) // ("/delete/{id}")
 	public ResponseEntity<Object> deleteProject(@PathVariable int id) {
 		projectService.deleteProject(id);
-		return ResponseEntity.ok(id);
+		return ResponseEntity.ok("Successfully deleted");
 	}
 
 	// Update
 	@PutMapping(Constants.UPDATEPROJECT) // ("/update")
 	public ResponseEntity<Object> updateProject(@RequestBody ProjectDto projectDto) {
-		Project project = new Project();
-		BeanUtils.copyProperties(projectDto, project);
-		projectService.updateProject(project);
-		return ResponseEntity.ok(project);
+		projectService.updateProject(projectDto);
+		return ResponseEntity.ok("Successfully deleted");
 	}
 }

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.spring.gradle.defect.entity.SmokeTest; 
 
 @Repository
-public interface  SmokeTestRepository extends JpaRepository<SmokeTest,Long>{
+public interface  SmokeTestRepository extends JpaRepository<SmokeTest,Integer>{
 	
 	
 }
