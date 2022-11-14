@@ -1,6 +1,5 @@
 package com.spring.gradle.defect.service.implementation;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -9,7 +8,6 @@ import com.spring.gradle.defect.entity.Project;
 import com.spring.gradle.defect.entity.TeamMember;
 import com.spring.gradle.defect.repository.MemberRepo;
 import com.spring.gradle.defect.repository.ProjectRepository;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

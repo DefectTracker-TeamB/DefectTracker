@@ -1,9 +1,9 @@
 package com.spring.gradle.defect.controller;
 
-import java.util.List;
-
 import com.spring.gradle.defect.dto.StatusDto;
-import org.springframework.beans.BeanUtils;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.gradle.defect.dto.DefectDto;
-import com.spring.gradle.defect.entity.Defect;
 import com.spring.gradle.defect.service.DefectService;
 import com.spring.gradle.defect.util.Constants;
 
@@ -27,11 +26,16 @@ public class DefectController {
 	@Autowired
 	DefectService defectService;
 
+	
+	Logger log = LoggerFactory.getLogger(DefectController.class);
+
 
 	 // Create defect
 		@PostMapping(Constants.CREATEDEFECT) 
 		public ResponseEntity<Object> createDefect(@RequestBody DefectDto defectDto) {
+			log.info("Defect successfully create!");
 			defectService.saveDefect(defectDto);
+			log.error("Error:", defectDto);
 			return ResponseEntity.ok(" Defect Successfully created!");
 
 		}
@@ -40,6 +44,8 @@ public class DefectController {
 	// Get all defects
 		@GetMapping(Constants.GET_ALLDEFECT) 
 		public ResponseEntity<Object> getDefect() {
+			log.info("Defect successfully deisplayed!");
+			//log.error("Error:", defectDto);
 			return ResponseEntity.ok(defectService.getAllDefect());
 		}
 
