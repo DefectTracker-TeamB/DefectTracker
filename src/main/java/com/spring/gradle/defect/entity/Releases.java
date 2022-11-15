@@ -23,6 +23,7 @@ public class Releases {
     private Project project;
 
     @OneToOne(fetch = FetchType.LAZY,mappedBy = "releases",cascade = CascadeType.ALL)
+    @JsonBackReference
     private SmokeTest smokeTest;
 
 }

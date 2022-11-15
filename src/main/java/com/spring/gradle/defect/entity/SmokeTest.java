@@ -1,5 +1,6 @@
 package com.spring.gradle.defect.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -30,7 +31,7 @@ public class SmokeTest {
 	
 	//entity
 	@OneToOne(fetch = FetchType.LAZY)
-
+	@JsonManagedReference
 	private Releases releases;
 	
 	
