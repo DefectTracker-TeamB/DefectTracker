@@ -1,5 +1,7 @@
 package com.spring.gradle.defect.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,11 +23,17 @@ public class ProjectController {
 
 	@Autowired
 	private ProjectService projectService;
+	
+	
+	Logger log = LoggerFactory.getLogger(ProjectController.class);
+
 
 	// Create project
 	@PostMapping(Constants.CREATEPROJECT) // ("/create")
 	public ResponseEntity<Object> createProject(@RequestBody ProjectDto projectDto) {
 		projectService.createProject(projectDto);
+		log.info("Project created");
+		log.error("Can not create the project", projectDto);
 		return ResponseEntity.ok("Project created");
 
 	}
@@ -33,12 +41,16 @@ public class ProjectController {
 	// GetAll
 	@GetMapping(Constants.GETALLPROJECT) // ("/getAll")
 	public ResponseEntity<Object> getProject() {
+		log.info("Projects displayed");
+		log.error("Unable to view the projects", projectService);
 		return ResponseEntity.ok(projectService.getAllProject());
 	}
 
 	// GetById
 	@GetMapping(Constants.GETBYPROJECTID) // ("/getById")
 	public ResponseEntity<Object> getProject(@PathVariable int id) {
+		log.info("Project displayed");
+		log.error("Unable to view the project with id", projectService);
 		return ResponseEntity.ok(projectService.getProjectById(id));
 	}
 
@@ -46,6 +58,8 @@ public class ProjectController {
 	@DeleteMapping(Constants.DELETEPROJECT) // ("/delete/{id}")
 	public ResponseEntity<Object> deleteProject(@PathVariable int id) {
 		projectService.deleteProject(id);
+		log.info("Project deleted");
+		log.error("Unable to delete the project with id", projectService);
 		return ResponseEntity.ok("Successfully deleted");
 	}
 
@@ -53,6 +67,8 @@ public class ProjectController {
 	@PutMapping(Constants.UPDATEPROJECT) // ("/update")
 	public ResponseEntity<Object> updateProject(@RequestBody ProjectDto projectDto) {
 		projectService.updateProject(projectDto);
+		log.info("Project updated");
+		log.error("Unable to update the project with id", projectService);
 		return ResponseEntity.ok("Successfully deleted");
 	}
 }

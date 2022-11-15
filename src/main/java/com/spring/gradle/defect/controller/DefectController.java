@@ -33,9 +33,9 @@ public class DefectController {
 	 // Create defect
 		@PostMapping(Constants.CREATEDEFECT) 
 		public ResponseEntity<Object> createDefect(@RequestBody DefectDto defectDto) {
-			log.info("Defect successfully create!");
 			defectService.saveDefect(defectDto);
-			log.error("Error:", defectDto);
+			log.info("Defect created");
+			log.error("Can not create the defect :%s\\n", defectDto);
 			return ResponseEntity.ok(" Defect Successfully created!");
 
 		}
@@ -44,8 +44,8 @@ public class DefectController {
 	// Get all defects
 		@GetMapping(Constants.GET_ALLDEFECT) 
 		public ResponseEntity<Object> getDefect() {
-			log.info("Defect successfully deisplayed!");
-			//log.error("Error:", defectDto);
+			log.info("Defect deisplayed");
+			log.error("Unable to view the defects :", defectService);
 			return ResponseEntity.ok(defectService.getAllDefect());
 		}
 
@@ -53,6 +53,8 @@ public class DefectController {
 	//Get defect
 		@GetMapping(Constants.GET_DEFECT)
 		public ResponseEntity<Object> getDefectById(@PathVariable int id) {
+			log.info("Defect deisplayed");
+			log.error("Unable to view the defect with id :", defectService);
 			return ResponseEntity.ok(defectService.getDefectById(id));
 			}
 
@@ -61,19 +63,25 @@ public class DefectController {
 	@PutMapping(Constants.PUT_DEFECT)
 	public ResponseEntity<Object> updateDefect(@RequestBody DefectDto defectDto) {
 		defectService.updateDefect(defectDto);
+		log.info("Defect Updated");
+		log.error("Can not update the defect :%s\\\\n :", defectService);
 		return ResponseEntity.ok().body("Successfully edited");
 		}
 		
 	//Delete defect
 	@DeleteMapping(Constants.DELE_DEFECT)
 	public ResponseEntity<Object>deleteDefect(@PathVariable int id){
-		defectService.deleteDefect(id);
+	    defectService.deleteDefect(id);
+		log.info("Defect deleted");
+		log.error("Unable to delete the defect with id :", defectService);
 		return ResponseEntity.ok("Delete Successfully!");
 	}
 	@PostMapping("/status")
 	public ResponseEntity<Object>changeStatus(@RequestBody StatusDto statusDto){
 			defectService.setStatus(statusDto);
-			return ResponseEntity.ok("status changed");
+			log.info("Defect status changed");
+			log.error("Unable to change the defect status:", defectService);
+			return ResponseEntity.ok("Status changed");
 	}
 
 	
