@@ -57,7 +57,7 @@ public class Module {
     private Project project;
 
     @OneToMany(mappedBy = "module",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	@JsonManagedReference
+	@JsonIgnore
     private List<Defect>defects;
 
 
