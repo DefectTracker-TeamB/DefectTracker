@@ -1,5 +1,11 @@
 package com.spring.gradle.defect.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -17,97 +23,47 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name = "module",catalog = "defect_tracker")
-public class Module implements Serializable{
+@Table(name = "module")
+@Getter
+@Setter
+public class Module {
 	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+
+
+
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
+
 	private int id;
 	
-	@Column(name="name")
+
 	private String name;
 	
-	@Column(name="assignedDeveloper")
+
 	private String assignedDeveloper;
+
+	private String assignedTester;
 	
-	@Column(name="description")
+
 	private String description;
+
 	
-	@ManyToOne(targetEntity = Project.class,fetch = FetchType.EAGER)
-    @JoinColumn(name = "proId",nullable =false)
-    private List<Project> project;
-	
-	
-	@Transient
-    @OneToMany(mappedBy = "module",cascade = CascadeType.ALL)
-    private List<Release> release;
+	@ManyToOne(targetEntity = Project.class,fetch = FetchType.LAZY)
+	@JsonBackReference
+    private Project project;
+
+    @OneToMany(mappedBy = "module",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@JsonIgnore
+    private List<Defect>defects;
+
+
+
 	 
 
-	public Module() {
-		super();
-	}
-
-	public Module(int id, String name, String assignedDeveloper, String description) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.assignedDeveloper = assignedDeveloper;
-		this.description = description;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getAssignedDeveloper() {
-		return assignedDeveloper;
-	}
-
-	public void setAssignedDeveloper(String assignedDeveloper) {
-		this.assignedDeveloper = assignedDeveloper;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public List<Project> getProject() {
-		return project;
-	}
-
-	public void setProject(List<Project> project) {
-		this.project = project;
-	}
-
-	public List<Release> getRelease() {
-		return release;
-	}
-
-	public void setRelease(List<Release> release) {
-		this.release = release;
-	}
 
 	
 	

@@ -1,8 +1,6 @@
 package com.spring.gradle.defect.controller;
 
-import java.util.List;
-
-import org.springframework.beans.BeanUtils;
+import com.spring.gradle.defect.service.ReleaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.gradle.defect.dto.ReleaseDto;
-import com.spring.gradle.defect.entity.Release;
-import com.spring.gradle.defect.service.ReleaseService;
 import com.spring.gradle.defect.util.*;
 
 
@@ -30,10 +26,8 @@ public class ReleaseController {
 	//Create
 	@PostMapping(Constants.CREATERELEASE)
 	public ResponseEntity<Object> createRelease(@RequestBody ReleaseDto releaseDto){
-		Release release=new Release();
-		BeanUtils.copyProperties(releaseDto, release);
-		releaseService.cretaeRelease(release);
-		return ResponseEntity.ok(release);
+		releaseService.createRelease(releaseDto);
+		return ResponseEntity.ok("Release created");
 		
 		
 		
@@ -42,33 +36,28 @@ public class ReleaseController {
 	//Get All
 	@GetMapping(Constants.GETALLRELEASE)
 	public ResponseEntity<Object> getRelease() {
-		List<ReleaseDto> releaseDtos =releaseService.getAllRelease();
-		return ResponseEntity.ok(releaseDtos);
+		return ResponseEntity.ok(releaseService.getAllRelease());
 	}
 	
 	
 	//Get by id
 	@GetMapping(Constants.GETBYRELEASEID)
 	public ResponseEntity<Object> getRelease(@PathVariable int id) {
-		ReleaseDto releaseDto = releaseService.getReleaseById(id);
-		return ResponseEntity.ok(releaseDto);
+		return ResponseEntity.ok(releaseService.getReleaseById(id));
 	}
 	//Delete
-@DeleteMapping(Constants.DELETERELEASE)
-public ResponseEntity<Object> deleteRelease(@PathVariable int id) {
+    @DeleteMapping(Constants.DELETERELEASE)
+	public ResponseEntity<Object> deleteRelease(@PathVariable int id) {
 	releaseService.deleteRelease(id);
-	return ResponseEntity.ok(id);
+	return ResponseEntity.ok("Deleted Successfully");
 }
 
 //Update
 	@PutMapping(Constants.UPDATERELEASE) // ("/update")
 	public ResponseEntity<Object> updateRelease(@RequestBody ReleaseDto releaseDto) {
-		Release release = new Release();
-		BeanUtils.copyProperties(releaseDto, release);
-		releaseService.updateRelease(release);
-		return ResponseEntity.ok(release);
+		releaseService.updateRelease(releaseDto);
+		return ResponseEntity.ok("edited successfully");
 	}
 	
-	
-	//khwgdiuwehfiurfh
+
 }

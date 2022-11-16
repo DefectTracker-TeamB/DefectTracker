@@ -26,52 +26,34 @@ public class UserController {
     private UserService userService;
 	
 	// create user 
-    @PostMapping("/createuser")
+    @PostMapping("/createUser")
     public ResponseEntity<Object> saveUser(@RequestBody UserDto userDto) {
-    User user = new User(); 
-    BeanUtils.copyProperties(userDto,user );
-    userService.saveUser(user);
-	return ResponseEntity.ok(user);
+        userService.saveUser(userDto);
+	    return ResponseEntity.ok("Added to defect Tracker application");
    } 
-    
-    
-    
-//    // GET ALL USERS 
-//    @GetMapping("users")
-//    public ResponseEntity<Object> getUsers() {
-//    	List<UserDto> userDtos = userService.getUserDtos();
-//    	return ResponseEntity.ok(userDtos);
-//    }
-    
-   
-//     // Get all
-	@GetMapping("users") 
+
+
+	@GetMapping("/bench")
 	public ResponseEntity<Object> getUsers() {
-		List<UserDto> userDtos =userService.getUsers();
-		return ResponseEntity.ok(userDtos);
+		return ResponseEntity.ok(userService.getUsersByAvailability());
 	}
-//     
-    
-    @GetMapping("user/{id}")
-    public ResponseEntity<Object> getUser(@PathVariable Long id){
-    	UserDto userDto = userService.getUserDto(id);
-    	return ResponseEntity.ok(userDto);
+
+    @GetMapping("getuser/{id}")
+    public ResponseEntity<Object> getUser(@PathVariable("id") int id){
+		return ResponseEntity.ok(userService.getUserById(id));
     } 
-    @PutMapping("/user/{id}") 
+    @PutMapping("/editUser")
     public ResponseEntity<Object> updateUser(@RequestBody UserDto userDto){
-    	User user = new User();
-    	BeanUtils.copyProperties(userDto,user );
-    	userService.saveUser(user);
-    	return ResponseEntity.ok(user);
+		userService.updateUser(userDto);
+		return ResponseEntity.ok("User Updated");
     } 
-    @DeleteMapping("/user/{id}")
-    public ResponseEntity<Object> deleteUser(@PathVariable Long id) {
-    	userService.deleteUser(id);
-    	return ResponseEntity.ok(id);
+    @DeleteMapping("/deleteUser/{emp_id}")
+    public ResponseEntity<Object> deleteUser(@PathVariable("emp_id") int id) {
+        return ResponseEntity.ok(userService.deleteUserByEmpId(id));
     }
-    
-    
-} 
+
+}
+
 
 
 

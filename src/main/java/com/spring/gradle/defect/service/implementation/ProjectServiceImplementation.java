@@ -1,5 +1,6 @@
 package com.spring.gradle.defect.service.implementation;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,34 +21,27 @@ public class ProjectServiceImplementation implements ProjectService {
 
 	// create
 	@Override
-	public void createProject(Project project) {
+	public void createProject(ProjectDto projectDto) {
+		Project project=new Project();
+		project.setName(projectDto.getName());
+		project.setDescription(projectDto.getDescription());
+		project.setEndDate(projectDto.getEndDate());
+		project.setStartDate(projectDto.getStartDate());
+		project.setUploadFile(projectDto.getUploadFile());
 		projectRepository.save(project);
 
 	}
 
 	// getAll
 	@Override
-	public List<ProjectDto> getAllProject() {
-		List<ProjectDto> proDtos = new ArrayList<>();
-		List<Project> projects = projectRepository.findAll();
-
-		for (Project project : projects) {
-			ProjectDto proDto = new ProjectDto();
-			BeanUtils.copyProperties(project, proDto);
-			proDtos.add(proDto);
-
-		}
-		return proDtos;
+	public List<Project> getAllProject() {
+		return projectRepository.findAll();
 	}
 
 	// getById
 	@Override
-	public ProjectDto getProjectById(int proId) {
-		Project project = projectRepository.findById(proId).get();
-		ProjectDto proDto = new ProjectDto();
-		BeanUtils.copyProperties(project, proDto);
-
-		return proDto;
+	public Project getProjectById(int proId) {
+		return projectRepository.findById(proId).get();
 	}
 
 	// delete
@@ -59,10 +53,13 @@ public class ProjectServiceImplementation implements ProjectService {
 
 	// update
 	@Override
-	public void updateProject(Project project) {
-		Project exitProject = projectRepository.findById(project.getProId()).get();
-		BeanUtils.copyProperties(project, exitProject);
-		projectRepository.save(exitProject);
-
+	public void updateProject(ProjectDto projectDto) {
+		Project project = projectRepository.findById(projectDto.getProId()).get();
+		project.setName(projectDto.getName());
+		project.setDescription(projectDto.getDescription());
+		project.setEndDate( projectDto.getEndDate());
+		project.setStartDate(projectDto.getStartDate());
+		project.setUploadFile(projectDto.getUploadFile());
+		projectRepository.save(project);
 	}
 }

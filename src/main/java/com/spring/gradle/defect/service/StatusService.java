@@ -10,12 +10,9 @@ public interface StatusService {
 	
 	
 	 public void saveStatus(Status status);
-
-		public List<StatusDto> getAllStatus();
-
-		public StatusDto getStatusById(Long id);
-
-		public void deleteStatus(Long id);
+	 public List<StatusDto> getAllStatus();
+	 public StatusDto getStatusById(Long id);
+	 public void deleteStatus(Long id);
 
 		public void updateStatus(Status status);
 

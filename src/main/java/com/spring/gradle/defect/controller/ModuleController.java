@@ -23,7 +23,7 @@ import com.spring.gradle.defect.util.*;
 //import antlr.collections.List;
 
 @RestController
-@RequestMapping("module")
+@RequestMapping("/module")
 public class ModuleController {
 
 	@Autowired
@@ -32,41 +32,35 @@ public class ModuleController {
 	// Create
 	@PostMapping(Constants.CREATEMODULE) // ("/createMod")
 	public ResponseEntity<Object> createModule(@RequestBody ModuleDto moduleDto) {
-		Module mod = new Module();
-		BeanUtils.copyProperties(moduleDto, mod);
-		moduleService.createModule(mod);
-		return ResponseEntity.ok(mod);
+		moduleService.createModule(moduleDto);
+		return ResponseEntity.ok("Module created successfully");
 
 	}
 
 	// Get all
 	@GetMapping(Constants.GETALLMODULE) // ("Modules")
-	public ResponseEntity<Object> getModules() {
-		List<ModuleDto> moduleDtos = moduleService.getModule();
-		return ResponseEntity.ok(moduleDtos);
+	public ResponseEntity<Object> getAllModules() {
+		return ResponseEntity.ok( moduleService.getAllModule());
 	}
 //
 	// Get By Id
 	@GetMapping(Constants.GETBYMODULEID) // ("/module/{id}")
-	public ResponseEntity<Object> getModule(@PathVariable int id) {
-		ModuleDto moduleDto = moduleService.getModuleDto(id);
-		return ResponseEntity.ok(moduleDto);
+	public ResponseEntity<Object> getModuleById(@PathVariable int id) {
+		return ResponseEntity.ok(moduleService.getModuleById(id));
 	}
 
 	// Update
 	@PutMapping(Constants.UPDATEMODULE) // ("/update/{id}")
 	public ResponseEntity<Object> updateModule(@RequestBody ModuleDto moduleDto) {
-		Module module = new Module();
-		BeanUtils.copyProperties(moduleDto, module);
-		moduleService.createModule(module);
-		return ResponseEntity.ok(module);
+		moduleService.updateModule(moduleDto);
+		return ResponseEntity.ok("Module Edited");
 	}
 
 	// Delete
 	@DeleteMapping(Constants.DELETEMODULE) // ("/delete/{id}")
 	public ResponseEntity<Object> deleteModule(@PathVariable int id) {
 		moduleService.deleteModule(id);
-		return ResponseEntity.ok(id);
+		return ResponseEntity.ok("Deleted successfully");
 	}
 
 }

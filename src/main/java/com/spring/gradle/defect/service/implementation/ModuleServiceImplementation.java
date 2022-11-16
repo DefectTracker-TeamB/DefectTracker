@@ -5,6 +5,10 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import com.spring.gradle.defect.entity.Project;
+import com.spring.gradle.defect.entity.TeamMember;
+import com.spring.gradle.defect.repository.MemberRepo;
+import com.spring.gradle.defect.repository.ProjectRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,33 +22,34 @@ import com.spring.gradle.defect.entity.Module;
 public class ModuleServiceImplementation implements ModuleService {
 
 	@Autowired
-	ModuleRepository moduleRepository;
+	private ModuleRepository moduleRepository;
+	@Autowired
+	private MemberRepo memberRepo;
+	@Autowired
+	private ProjectRepository projectRepository;
 
 	@Override
-	public void createModule(Module module) {
+	public void createModule(ModuleDto moduleDto) {
+		Module module=new Module();
+		TeamMember developer=memberRepo.findById(moduleDto.getDeveloper_Team_id()).orElse(new TeamMember());
+		TeamMember tester=memberRepo.findById(moduleDto.getTester_Team_id()).orElse(new TeamMember());
+		Project project=projectRepository.findById(moduleDto.getProject_id()).get();
+		module.setName(moduleDto.getName());
+		module.setAssignedTester(tester.getName());
+		module.setAssignedDeveloper(developer.getName());
+		module.setDescription(moduleDto.getDescription());
+		module.setProject(project);
 		moduleRepository.save(module);
-
 	}
 
 	@Override
-	public List<ModuleDto> getModule() {
-		List<ModuleDto> moduleDtos = new ArrayList<>();
-		List<Module> modules = moduleRepository.findAll();
-
-		for (Module module : modules) {
-			ModuleDto moduleDto = new ModuleDto();
-			BeanUtils.copyProperties(module, moduleDto);
-			moduleDtos.add(moduleDto);
-		}
-		return moduleDtos;
+	public List<Module> getAllModule() {
+		return moduleRepository.findAll();
 	}
 
 	@Override
-	public ModuleDto getModuleDto(int id) {
-		Module module = moduleRepository.findById(id).get();
-		ModuleDto moduleDto = new ModuleDto();
-		BeanUtils.copyProperties(module, moduleDto);
-		return moduleDto;
+	public Module getModuleById(int id) {
+		return moduleRepository.findById(id).get();
 	}
 
 	@Override
@@ -55,10 +60,15 @@ public class ModuleServiceImplementation implements ModuleService {
 	}
 
 	@Override
-	public void updateModule(Module module) {
-		Module exitModule = moduleRepository.findById(module.getId()).get();
-		BeanUtils.copyProperties(module, exitModule);
-		moduleRepository.save(exitModule);
+	public void updateModule(ModuleDto moduleDto) {
+		Module module=moduleRepository.findById(moduleDto.getId()).orElse(new Module());
+		TeamMember developer=memberRepo.findById(moduleDto.getDeveloper_Team_id()).orElse(new TeamMember());
+		TeamMember tester=memberRepo.findById(moduleDto.getTester_Team_id()).orElse(new TeamMember());
+		module.setName(moduleDto.getName());
+		module.setAssignedTester(tester.getName());
+		module.setAssignedDeveloper(developer.getName());
+		module.setDescription(moduleDto.getDescription());
+		moduleRepository.save(module);
 
 	}
 

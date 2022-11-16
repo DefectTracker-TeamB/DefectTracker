@@ -26,44 +26,33 @@ public class SmokeTestController {
 	@Autowired
 	private SmokeTestService smoketestService;
 
-	//create
-	@PostMapping(Constants.CREATESMOKE)
-	public ResponseEntity<Object> saveSmokeTest(@RequestBody SmokeTestDto smoketestDto) {
-		SmokeTest smoketest = new SmokeTest();
-		BeanUtils.copyProperties(smoketestDto, smoketest);
-		smoketestService.createSmokeTest(smoketest);
-		return ResponseEntity.ok(smoketest);
+	@PostMapping("/saveTest")
+	public ResponseEntity<Object>saveTest(@RequestBody SmokeTestDto smokeTestDto){
+		smoketestService.saveTest(smokeTestDto);
+		return ResponseEntity.ok("Test saved");
 	}
+	@PostMapping("/editTest")
+	public ResponseEntity<Object>editTest(@RequestBody SmokeTestDto smokeTestDto){
+		smoketestService.editSmokeById(smokeTestDto);
+		return ResponseEntity.ok("Test edited");
+	}
+
+	//create
 
 	// GET ALL SmokeTests
 	@GetMapping(Constants.GETALLSMOKE)
 	public ResponseEntity<Object> getSmokeTests() {
-		List<SmokeTestDto> smoketestDtos = smoketestService.getSmokeTest();
-		return ResponseEntity.ok(smoketestDtos);
+		return ResponseEntity.ok(smoketestService.getAllSmokeTests());
 	}
 
-	// Get By Id
+	// Get By id
 	@GetMapping(Constants.GETBYSMOKEID)
-	public ResponseEntity<Object> getSmokeTests(@PathVariable Long id) {
-		SmokeTestDto smokeTestDto = smoketestService.getSmokeTestDto(id);
-		return ResponseEntity.ok(smokeTestDto);
+	public ResponseEntity<Object> getSmokeTests(@PathVariable int id) {
+		return ResponseEntity.ok(smoketestService.getSmokeTestById(id));
 	}
 
-	// Update
-	@PutMapping(Constants.UPDATESMOKE)
-	public ResponseEntity<Object> updateSmokeTests(@RequestBody SmokeTestDto smokeTestDto) {
-		SmokeTest smoketest = new SmokeTest();
-		BeanUtils.copyProperties(smokeTestDto, smoketest);
-		smoketestService.updateSmokeTest(smoketest);
-		return ResponseEntity.ok(smoketest);
-	}
 
-	 // Delete
-	@DeleteMapping(Constants.DELETESMOKE) 
-	public ResponseEntity<Object> deleteSmokeTests(@PathVariable Long id) {
-		smoketestService.deleteSmokeTest(id);
-		return ResponseEntity.ok(id);
-	}
-	 
+
+
 	
 }
