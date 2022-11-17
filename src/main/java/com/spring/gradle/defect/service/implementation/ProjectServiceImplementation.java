@@ -1,10 +1,7 @@
 package com.spring.gradle.defect.service.implementation;
 
-import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

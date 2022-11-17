@@ -8,12 +8,9 @@ import com.spring.gradle.defect.repository.MemberRepo;
 import com.spring.gradle.defect.repository.ProjectRepository;
 import com.spring.gradle.defect.repository.UserRepository;
 import com.spring.gradle.defect.service.MemberService;
-import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
