@@ -1,10 +1,12 @@
 package com.spring.gradle.defect.controller;
 
+
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,14 +19,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.gradle.defect.dto.UserDto;
-import com.spring.gradle.defect.entity.User;
 import com.spring.gradle.defect.service.UserService;
 
-                 //User CRUD 
+//User CRUD 
 @RequestMapping("/user")
-@RestController 
-public class UserController { 
+@RestController
+public class UserController {
 	@Autowired
+
     private UserService userService;
 	
 	Logger log = LoggerFactory.getLogger(DefectController.class);
@@ -40,8 +42,18 @@ public class UserController {
    } 
 
 
+	// create user
+	@PostMapping("/createUser")
+	public ResponseEntity<Object> saveUser(@RequestBody UserDto userDto) {
+		userService.saveUser(userDto);
+		log.info("User created");
+		log.error("Can not create the user", userDto);
+		return ResponseEntity.ok("Added to defect Tracker application");
+	}
+
 	@GetMapping("/bench")
 	public ResponseEntity<Object> getUsers() {
+
 		log.info("Entered to user");
 		log.info("Datas displayed from user database");
 		log.error("Can not to view the user details", userService);
@@ -95,8 +107,13 @@ public class UserController {
 
 
 
+	@DeleteMapping("/deleteUser/{emp_id}")
+	public ResponseEntity<Object> deleteUser(@PathVariable("emp_id") int id) {
+		log.info("User deleted");
+		log.error("unable to delete the user", userService);
+		return ResponseEntity.ok(userService.deleteUserByEmpId(id));
+	}
+
+}
 
 //Login API
-
-	
-

@@ -19,4 +19,6 @@ public interface DefectService {
 	public void updateDefect(DefectDto defectDto);
 
 	public void setStatus(StatusDto statusDto);
+
+	//public void setStatus(StatusDto statusDto);
 }

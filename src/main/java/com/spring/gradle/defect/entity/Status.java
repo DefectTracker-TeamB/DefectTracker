@@ -21,11 +21,8 @@ public class Status implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	private String status_name;
-	private String change_date;
-	private String description;
-
+	private int id;
+	private String status;
 
 
 }

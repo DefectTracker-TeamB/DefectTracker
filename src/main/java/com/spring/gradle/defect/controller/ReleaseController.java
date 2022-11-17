@@ -26,15 +26,19 @@ public class ReleaseController {
 	@Autowired
 	private ReleaseService releaseService;
 	
+
 	Logger log = LoggerFactory.getLogger(DefectController.class);
+
 	
 	//Create
 	@PostMapping(Constants.CREATERELEASE)
 	public ResponseEntity<Object> createRelease(@RequestBody ReleaseDto releaseDto){
 		log.info("Entered to release");
 		releaseService.createRelease(releaseDto);
+
 		log.info("Datas sent to release service");
 		log.error("Unable to create release", releaseDto);
+
 		return ResponseEntity.ok("Release created");
 		
 		
@@ -44,9 +48,11 @@ public class ReleaseController {
 	//Get All
 	@GetMapping(Constants.GETALLRELEASE)
 	public ResponseEntity<Object> getRelease() {
+
 		log.info("Entered to release");
 		log.info("Datas displayed from release database");
 		log.error("Can not to view the release details", releaseService);
+
 		return ResponseEntity.ok(releaseService.getAllRelease());
 	}
 	
@@ -54,9 +60,11 @@ public class ReleaseController {
 	//Get by id
 	@GetMapping(Constants.GETBYRELEASEID)
 	public ResponseEntity<Object> getRelease(@PathVariable int id) {
+
 		log.info("Entered to release");
 		log.info("Data displayed from release database");
 		log.error("Can not to view the release detail", releaseService);
+
 		return ResponseEntity.ok(releaseService.getReleaseById(id));
 	}
 	//Delete
@@ -64,8 +72,10 @@ public class ReleaseController {
 	public ResponseEntity<Object> deleteRelease(@PathVariable int id) {
 		log.info("Entered to release");
 	releaseService.deleteRelease(id);
+
 	log.info("Datas delete from release service");
 	log.error("Can not to delete the release detail", releaseService);
+
 	return ResponseEntity.ok("Deleted Successfully");
 }
 
@@ -74,8 +84,10 @@ public class ReleaseController {
 	public ResponseEntity<Object> updateRelease(@RequestBody ReleaseDto releaseDto) {
 		log.info("Entered to release");
 		releaseService.updateRelease(releaseDto);
+
 		log.info("Datas update from release service");
 		log.error("Can not to update the release detail", releaseService);
+
 		return ResponseEntity.ok("edited successfully");
 	}
 	

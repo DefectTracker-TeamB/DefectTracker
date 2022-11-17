@@ -37,6 +37,7 @@ public class DefectImplementation implements DefectService {
 		Module module=moduleRepository.findById(defectDto.getModule_id()).orElse(new Module());
 		Project project=projectRepository.findById(defectDto.getProject_id()).orElse(new Project());
 		Releases release=releaseRepository.findById(defectDto.getRelease_id()).orElse(new Releases());
+		
 		defect.setAssign_to(module.getAssignedDeveloper());
 		defect.setAssignee(module.getAssignedTester());
 		defect.setDescription(defectDto.getDescription());
