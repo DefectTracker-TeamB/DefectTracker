@@ -1,34 +1,29 @@
 package com.spring.gradle.defect.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Getter
 @Setter
-@JsonIgnoreProperties({"project"})
-public class TeamMember {
+public class Releases {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name;
-    private String role;
-    private int contribution;
+
+    private String api_link;
+    private String upload_file;
+    private String release_version;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonBackReference
     private Project project;
-    @ManyToOne(fetch = FetchType.LAZY)
+
+    @OneToOne(fetch = FetchType.LAZY,mappedBy = "releases",cascade = CascadeType.ALL)
     @JsonBackReference
-    private User user;
-
-
-
+    private SmokeTest smokeTest;
 
 }

@@ -3,9 +3,10 @@ package com.spring.gradle.defect.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.spring.gradle.defect.entity.Defect;
+import com.spring.gradle.defect.entity.SmokeTest; 
 
 @Repository
-public interface DefectRepository extends JpaRepository<Defect,Integer> {
-
+public interface  SmokeTestRepository extends JpaRepository<SmokeTest,Integer>{
+	
+	
 }
