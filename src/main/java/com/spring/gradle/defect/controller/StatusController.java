@@ -34,7 +34,7 @@ public class StatusController {
 	// Create
 	@PostMapping(Constants.CREATESTATUS)
 	public ResponseEntity<Object> createStatus(@RequestBody StatusDto statusDto) {
-		Status status = new Status();
+		StatusDto status = new StatusDto();
 		BeanUtils.copyProperties(statusDto, status);
 		statusService.saveStatus(status);
 		log.info("Status created");
@@ -54,25 +54,34 @@ public class StatusController {
 
 	// Get Status
 	@GetMapping(Constants.GET_SATATUS)
+
+	public ResponseEntity<Object> getStatusById(@PathVariable int id) {
+
 	public ResponseEntity<Object> getStatusById(@PathVariable Long id) {
 		log.info("Status displayed");
 		log.error("Unable to display the status with id", statusService);
+
 		return ResponseEntity.ok(statusService.getStatusById(id));
 	}
 
 	// update
 	@PutMapping(Constants.PUT_SATATUS)
-	public Status updateStatus(@RequestBody Status status) {
+	public StatusDto updateStatus(@RequestBody StatusDto statusDto) {
 		System.out.println("Successfully update!");
+
+		statusService.updateStatus(statusDto);
+		return statusDto;
+
 		statusService.updateStatus(status);
 		log.info("Status updated");
 		log.error("Unable to update the status with id", statusService);
 		return status;
+
 	}
 
 	// Delete
 	@DeleteMapping(Constants.DELE_STATUS)
-	public ResponseEntity<Object> deleteStatus(@PathVariable Long id) {
+	public ResponseEntity<Object> deleteStatus(@PathVariable int id) {
 		statusService.deleteStatus(id);
 		log.info("Status deleted");
 		log.error("Unable to delete the status with id", statusService);

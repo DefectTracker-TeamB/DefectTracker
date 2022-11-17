@@ -1,7 +1,9 @@
 package com.spring.gradle.defect.controller;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,9 +34,11 @@ public class SmokeTestController {
 		log.info("Smoke test created");
 		log.error("Can not create the smoke test", smokeTestDto);
 		return ResponseEntity.ok("Test saved");
+		
 	}
+
 	@PostMapping("/editTest")
-	public ResponseEntity<Object>editTest(@RequestBody SmokeTestDto smokeTestDto){
+	public ResponseEntity<Object> editTest(@RequestBody SmokeTestDto smokeTestDto) {
 		smoketestService.editSmokeById(smokeTestDto);
 		log.info("Smoke test updated");
 		log.error("Unable to update the smoke test", smokeTestDto);
