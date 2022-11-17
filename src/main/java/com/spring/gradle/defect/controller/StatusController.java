@@ -28,7 +28,7 @@ public class StatusController {
 	// Create
 	@PostMapping(Constants.CREATESTATUS)
 	public ResponseEntity<Object> createStatus(@RequestBody StatusDto statusDto) {
-		Status status = new Status();
+		StatusDto status = new StatusDto();
 		BeanUtils.copyProperties(statusDto, status);
 		statusService.saveStatus(status);
 		return ResponseEntity.ok(" Status Successfully created!");
@@ -44,21 +44,21 @@ public class StatusController {
 
 	// Get Status
 	@GetMapping(Constants.GET_SATATUS)
-	public ResponseEntity<Object> getStatusById(@PathVariable Long id) {
+	public ResponseEntity<Object> getStatusById(@PathVariable int id) {
 		return ResponseEntity.ok(statusService.getStatusById(id));
 	}
 
 	// update
 	@PutMapping(Constants.PUT_SATATUS)
-	public Status updateStatus(@RequestBody Status status) {
+	public StatusDto updateStatus(@RequestBody StatusDto statusDto) {
 		System.out.println("Successfully update!");
-		statusService.updateStatus(status);
-		return status;
+		statusService.updateStatus(statusDto);
+		return statusDto;
 	}
 
 	// Delete
 	@DeleteMapping(Constants.DELE_STATUS)
-	public ResponseEntity<Object> deleteStatus(@PathVariable Long id) {
+	public ResponseEntity<Object> deleteStatus(@PathVariable int id) {
 		statusService.deleteStatus(id);
 		return ResponseEntity.ok("Delete Successfully!");
 	}

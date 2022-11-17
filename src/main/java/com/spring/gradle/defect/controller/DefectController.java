@@ -64,11 +64,11 @@ public class DefectController {
 		defectService.deleteDefect(id);
 		return ResponseEntity.ok("Delete Successfully!");
 	}
-	@PostMapping("/status")
-	public ResponseEntity<Object>changeStatus(@RequestBody StatusDto statusDto){
-			defectService.setStatus(statusDto);
-			return ResponseEntity.ok("status changed");
-	}
+//	@PostMapping("/status")
+//	public ResponseEntity<Object>changeStatus(@RequestBody StatusDto statusDto){
+//			defectService.setStatus(statusDto);
+//			return ResponseEntity.ok("status changed");
+//	}
 
 	
 

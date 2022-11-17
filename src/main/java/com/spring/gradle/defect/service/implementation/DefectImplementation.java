@@ -37,6 +37,7 @@ public class DefectImplementation implements DefectService {
 		Module module=moduleRepository.findById(defectDto.getModule_id()).orElse(new Module());
 		Project project=projectRepository.findById(defectDto.getProject_id()).orElse(new Project());
 		Releases release=releaseRepository.findById(defectDto.getRelease_id()).orElse(new Releases());
+		
 		defect.setAssign_to(module.getAssignedDeveloper());
 		defect.setAssignee(module.getAssignedTester());
 		defect.setDescription(defectDto.getDescription());
@@ -94,23 +95,23 @@ public class DefectImplementation implements DefectService {
 		defectRepository.save(defect);
 	}
 
-	@Override
-	public void setStatus(StatusDto statusDto) {
-		Defect defect=defectRepository.findById(statusDto.getDefect_id()).orElse(new Defect());
-		String status=statusDto.getStatus();
-		if(defect.getStatus().contains("New")){
-			if(status.contains("Open")){
-				defect.setStatus(statusDto.getStatus());
-			}
-		} else if (defect.getStatus().contains("Open")) {
-			if(status.contains("Reject")|status.contains("Progress")){
-				defect.setStatus(statusDto.getStatus());
-			}
-
-		}
-		defect.setStatus(statusDto.getStatus());
-		defectRepository.save(defect);
-	}
+//	@Override
+//	public void setStatus(StatusDto statusDto) {
+//		Defect defect=defectRepository.findById(statusDto.getDefect_id()).orElse(new Defect());
+//		String status=statusDto.getStatus();
+//		if(defect.getStatus().contains("New")){
+//			if(status.contains("Open")){
+//				defect.setStatus(statusDto.getStatus());
+//			}
+//		} else if (defect.getStatus().contains("Open")) {
+//			if(status.contains("Reject")|status.contains("Progress")){
+//				defect.setStatus(statusDto.getStatus());
+//			}
+//
+//		}
+//		defect.setStatus(statusDto.getStatus());
+//		defectRepository.save(defect);
+//	}
 
 
 }
