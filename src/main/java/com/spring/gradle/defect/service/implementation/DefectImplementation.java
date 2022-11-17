@@ -95,23 +95,23 @@ public class DefectImplementation implements DefectService {
 		defectRepository.save(defect);
 	}
 
-//	@Override
-//	public void setStatus(StatusDto statusDto) {
-//		Defect defect=defectRepository.findById(statusDto.getDefect_id()).orElse(new Defect());
-//		String status=statusDto.getStatus();
-//		if(defect.getStatus().contains("New")){
-//			if(status.contains("Open")){
-//				defect.setStatus(statusDto.getStatus());
-//			}
-//		} else if (defect.getStatus().contains("Open")) {
-//			if(status.contains("Reject")|status.contains("Progress")){
-//				defect.setStatus(statusDto.getStatus());
-//			}
-//
-//		}
-//		defect.setStatus(statusDto.getStatus());
-//		defectRepository.save(defect);
-//	}
+	@Override
+	public void setStatus(StatusDto statusDto) {
+		Defect defect=defectRepository.findById(statusDto.getDefect_id()).orElse(new Defect());
+		String status=statusDto.getStatus();
+		if(defect.getStatus().contains("New")){
+			if(status.contains("Open")){
+				defect.setStatus(statusDto.getStatus());
+			}
+		} else if (defect.getStatus().contains("Open")) {
+			if(status.contains("Reject")|status.contains("Progress")){
+				defect.setStatus(statusDto.getStatus());
+			}
+
+		}
+		defect.setStatus(statusDto.getStatus());
+		defectRepository.save(defect);
+	}
 
 
 }
