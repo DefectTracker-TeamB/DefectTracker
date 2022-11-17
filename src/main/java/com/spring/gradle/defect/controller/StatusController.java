@@ -31,14 +31,19 @@ public class StatusController {
 	Logger log = LoggerFactory.getLogger(StatusController.class);
 
 
+	Logger log = LoggerFactory.getLogger(DefectController.class);
+	
 	// Create
 	@PostMapping(Constants.CREATESTATUS)
 	public ResponseEntity<Object> createStatus(@RequestBody StatusDto statusDto) {
-		StatusDto status = new StatusDto();
+
+		log.info("Entered to status");
+		Status status = new Status();
 		BeanUtils.copyProperties(statusDto, status);
 		statusService.saveStatus(status);
-		log.info("Status created");
-		log.error("Can not to create the status", status);
+		log.info("Datas sent to status service");
+		log.error("Unable to create status", statusDto);
+
 		return ResponseEntity.ok(" Status Successfully created!");
 
 	}
@@ -46,9 +51,12 @@ public class StatusController {
 	// Get all
 	@GetMapping(Constants.GET_ALLSATATUS)
 	public ResponseEntity<Object> getStatus() {
+		log.info("Entered to status");
 		List<StatusDto> statusDtos = statusService.getAllStatus();
-		log.info("Status displayed");
-		log.error("Unable to display the status", statusService);
+
+		log.info("Datas displayed from status database");
+		log.error("Can not to view the status details", statusService);
+
 		return ResponseEntity.ok(statusDtos);
 	}
 
@@ -58,33 +66,43 @@ public class StatusController {
 	public ResponseEntity<Object> getStatusById(@PathVariable int id) {
 
 	public ResponseEntity<Object> getStatusById(@PathVariable Long id) {
-		log.info("Status displayed");
-		log.error("Unable to display the status with id", statusService);
+
+		log.info("Entered to status");
+		log.info("Data displayed from status database");
+		log.error("Can not to view the status detail", statusService);
 
 		return ResponseEntity.ok(statusService.getStatusById(id));
 	}
 
 	// update
 	@PutMapping(Constants.PUT_SATATUS)
-	public StatusDto updateStatus(@RequestBody StatusDto statusDto) {
+
+	public Status updateStatus(@RequestBody Status status) {
+		log.info("Entered to status");
+
 		System.out.println("Successfully update!");
 
 		statusService.updateStatus(statusDto);
 		return statusDto;
 
 		statusService.updateStatus(status);
-		log.info("Status updated");
-		log.error("Unable to update the status with id", statusService);
+
+		log.info("Datas update from status service");
+		log.error("Can not to update the status detail", statusService);
+
 		return status;
 
 	}
 
 	// Delete
 	@DeleteMapping(Constants.DELE_STATUS)
-	public ResponseEntity<Object> deleteStatus(@PathVariable int id) {
+
+	public ResponseEntity<Object> deleteStatus(@PathVariable Long id) {
+		log.info("Entered to status");
 		statusService.deleteStatus(id);
-		log.info("Status deleted");
-		log.error("Unable to delete the status with id", statusService);
+		log.info("Datas delete from status service");
+		log.error("Can not to delete the status detail", statusService);
+
 		return ResponseEntity.ok("Delete Successfully!");
 	}
 }

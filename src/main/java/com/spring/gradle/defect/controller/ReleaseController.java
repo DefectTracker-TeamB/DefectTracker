@@ -26,16 +26,19 @@ public class ReleaseController {
 	@Autowired
 	private ReleaseService releaseService;
 	
-	
-	Logger log = LoggerFactory.getLogger(ReleaseController.class);
+
+	Logger log = LoggerFactory.getLogger(DefectController.class);
 
 	
 	//Create
 	@PostMapping(Constants.CREATERELEASE)
 	public ResponseEntity<Object> createRelease(@RequestBody ReleaseDto releaseDto){
+		log.info("Entered to release");
 		releaseService.createRelease(releaseDto);
-		log.info("release created");
-		log.error("Can not create the release", releaseDto);
+
+		log.info("Datas sent to release service");
+		log.error("Unable to create release", releaseDto);
+
 		return ResponseEntity.ok("Release created");
 		
 		
@@ -45,8 +48,11 @@ public class ReleaseController {
 	//Get All
 	@GetMapping(Constants.GETALLRELEASE)
 	public ResponseEntity<Object> getRelease() {
-		log.info("releases displayed");
-		log.error("Unable to display the releases", releaseService);
+
+		log.info("Entered to release");
+		log.info("Datas displayed from release database");
+		log.error("Can not to view the release details", releaseService);
+
 		return ResponseEntity.ok(releaseService.getAllRelease());
 	}
 	
@@ -54,25 +60,34 @@ public class ReleaseController {
 	//Get by id
 	@GetMapping(Constants.GETBYRELEASEID)
 	public ResponseEntity<Object> getRelease(@PathVariable int id) {
-		log.info("release displayed");
-		log.error("Unable to display the release with id", releaseService);
+
+		log.info("Entered to release");
+		log.info("Data displayed from release database");
+		log.error("Can not to view the release detail", releaseService);
+
 		return ResponseEntity.ok(releaseService.getReleaseById(id));
 	}
 	//Delete
     @DeleteMapping(Constants.DELETERELEASE)
 	public ResponseEntity<Object> deleteRelease(@PathVariable int id) {
+		log.info("Entered to release");
 	releaseService.deleteRelease(id);
-	log.info("release deleted");
-	log.error("Unable to delete the release with id", releaseService);
+
+	log.info("Datas delete from release service");
+	log.error("Can not to delete the release detail", releaseService);
+
 	return ResponseEntity.ok("Deleted Successfully");
 }
 
 //Update
 	@PutMapping(Constants.UPDATERELEASE) // ("/update")
 	public ResponseEntity<Object> updateRelease(@RequestBody ReleaseDto releaseDto) {
+		log.info("Entered to release");
 		releaseService.updateRelease(releaseDto);
-		log.info("release updated");
-		log.error("Unable to update the release", releaseService);
+
+		log.info("Datas update from release service");
+		log.error("Can not to update the release detail", releaseService);
+
 		return ResponseEntity.ok("edited successfully");
 	}
 	

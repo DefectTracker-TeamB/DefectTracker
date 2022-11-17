@@ -1,7 +1,12 @@
 package com.spring.gradle.defect.controller;
 
+
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,12 +35,16 @@ public class ModuleController {
 	Logger log = LoggerFactory.getLogger(ModuleController.class);
 
 
+	Logger log = LoggerFactory.getLogger(DefectController.class);
 	// Create
 	@PostMapping(Constants.CREATEMODULE) // ("/createMod")
 	public ResponseEntity<Object> createModule(@RequestBody ModuleDto moduleDto) {
+		log.info("Entered to module");
 		moduleService.createModule(moduleDto);
-		log.info("Module created");
-		log.error("can not create the module", moduleDto);
+
+		log.info("Datas sent to module service");
+		log.error("Unable to create module", moduleDto);
+
 		return ResponseEntity.ok("Module created successfully");
 
 	}
@@ -43,34 +52,47 @@ public class ModuleController {
 	// Get all
 	@GetMapping(Constants.GETALLMODULE) // ("Modules")
 	public ResponseEntity<Object> getAllModules() {
-		log.info("Modules displayed");
-		log.error("unable to view the modules", moduleService);
+
+		log.info("Entered to Module");
+		log.info("Datas displayed from module database");
+		log.error("Can not to view the modules details", moduleService);
+
 		return ResponseEntity.ok( moduleService.getAllModule());
 	}
 //
 	// Get By Id
 	@GetMapping(Constants.GETBYMODULEID) // ("/module/{id}")
 	public ResponseEntity<Object> getModuleById(@PathVariable int id) {
-		log.info("Module displayed");
-		log.error("unable to view the module with id", moduleService);
+
+		
+		log.info("Entered to module");
+		log.info("Data displayed from module database");
+		log.error("Can not to view the module detail", moduleService);
+
 		return ResponseEntity.ok(moduleService.getModuleById(id));
 	}
 
 	// Update
 	@PutMapping(Constants.UPDATEMODULE) // ("/update/{id}")
 	public ResponseEntity<Object> updateModule(@RequestBody ModuleDto moduleDto) {
+		log.info("Entered to module");
 		moduleService.updateModule(moduleDto);
-		log.info("Module updated");
-		log.error("unable to update the module", moduleService);
+
+		log.info("Datas update from module service");
+		log.error("Can not to update the module detail", moduleService);
+
 		return ResponseEntity.ok("Module Edited");
 	}
 
 	// Delete
 	@DeleteMapping(Constants.DELETEMODULE) // ("/delete/{id}")
 	public ResponseEntity<Object> deleteModule(@PathVariable int id) {
+		log.info("Entered to module");
 		moduleService.deleteModule(id);
-		log.info("Module deleted");
-		log.error("unable to delete the module", moduleService);
+
+		log.info("Datas delete from module service");
+		log.error("Can not to delete the module detail", moduleService);
+
 		return ResponseEntity.ok("Deleted successfully");
 	}
 
