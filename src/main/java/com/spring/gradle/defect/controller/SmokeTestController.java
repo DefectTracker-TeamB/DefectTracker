@@ -30,7 +30,7 @@ public class SmokeTestController {
 	Logger log = LoggerFactory.getLogger(SmokeTestController.class);
 
 
-	Logger log = LoggerFactory.getLogger(DefectController.class);
+	//Logger log = LoggerFactory.getLogger(DefectController.class);
 	
 	@PostMapping("/saveTest")
 	public ResponseEntity<Object>saveTest(@RequestBody SmokeTestDto smokeTestDto){

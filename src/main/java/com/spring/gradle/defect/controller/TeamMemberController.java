@@ -19,7 +19,7 @@ public class TeamMemberController {
 	Logger log = LoggerFactory.getLogger(TeamMemberController.class);
 
 
-    Logger log = LoggerFactory.getLogger(DefectController.class);
+   // Logger log = LoggerFactory.getLogger(DefectController.class);
     
     @PostMapping("/addMember")
     public ResponseEntity<Object>addMember(@RequestBody TeamMemberDto teamMemberDto){

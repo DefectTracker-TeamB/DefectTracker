@@ -42,14 +42,14 @@ public class UserController {
    } 
 
 
-	// create user
-	@PostMapping("/createUser")
-	public ResponseEntity<Object> saveUser(@RequestBody UserDto userDto) {
-		userService.saveUser(userDto);
-		log.info("User created");
-		log.error("Can not create the user", userDto);
-		return ResponseEntity.ok("Added to defect Tracker application");
-	}
+//	// create user
+//	@PostMapping("/createUser")
+//	public ResponseEntity<Object> saveUser(@RequestBody UserDto userDto) {
+//		userService.saveUser(userDto);
+//		log.info("User created");
+//		log.error("Can not create the user", userDto);
+//		return ResponseEntity.ok("Added to defect Tracker application");
+//	}
 
 	@GetMapping("/bench")
 	public ResponseEntity<Object> getUsers() {
@@ -107,13 +107,13 @@ public class UserController {
 
 
 
-	@DeleteMapping("/deleteUser/{emp_id}")
-	public ResponseEntity<Object> deleteUser(@PathVariable("emp_id") int id) {
-		log.info("User deleted");
-		log.error("unable to delete the user", userService);
-		return ResponseEntity.ok(userService.deleteUserByEmpId(id));
-	}
-
-}
-
-//Login API
+//	@DeleteMapping("/deleteUser/{emp_id}")
+//	public ResponseEntity<Object> deleteUser(@PathVariable("emp_id") int id) {
+//		log.info("User deleted");
+//		log.error("unable to delete the user", userService);
+//		return ResponseEntity.ok(userService.deleteUserByEmpId(id));
+//	}
+//
+//}
+//
+////Login API

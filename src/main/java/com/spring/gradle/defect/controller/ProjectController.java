@@ -33,7 +33,7 @@ public class ProjectController {
 	Logger log = LoggerFactory.getLogger(ProjectController.class);
 
 
-	Logger log = LoggerFactory.getLogger(DefectController.class);
+	//Logger log = LoggerFactory.getLogger(DefectController.class);
 	
 	// Create project
 	@PostMapping(Constants.CREATEPROJECT) // ("/create")

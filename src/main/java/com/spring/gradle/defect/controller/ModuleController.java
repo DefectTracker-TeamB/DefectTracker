@@ -35,7 +35,7 @@ public class ModuleController {
 	Logger log = LoggerFactory.getLogger(ModuleController.class);
 
 
-	Logger log = LoggerFactory.getLogger(DefectController.class);
+	//Logger log = LoggerFactory.getLogger(DefectController.class);
 	// Create
 	@PostMapping(Constants.CREATEMODULE) // ("/createMod")
 	public ResponseEntity<Object> createModule(@RequestBody ModuleDto moduleDto) {
