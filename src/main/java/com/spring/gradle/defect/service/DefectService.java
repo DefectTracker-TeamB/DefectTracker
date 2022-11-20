@@ -1,22 +1,22 @@
 package com.spring.gradle.defect.service;
 
-import java.util.List;
-
 import com.spring.gradle.defect.dto.DefectDto;
 import com.spring.gradle.defect.dto.StatusDto;
 import com.spring.gradle.defect.entity.Defect;
 
+import java.util.List;
+
 public interface DefectService {
-	
-	public void saveDefect(DefectDto defectDto);
 
-	public List<Defect> getAllDefect();
+    void saveDefect(DefectDto defectDto);
 
-	public Defect getDefectById(int id);
+    List<Defect> getAllDefect();
 
-	public void deleteDefect(int id);
+    Defect getDefectById(int id);
 
-	public void updateDefect(DefectDto defectDto);
+    void deleteDefect(int id);
 
-	public void setStatus(StatusDto statusDto);
+    void updateDefect(DefectDto defectDto);
+
+    void setStatus(StatusDto statusDto);
 }

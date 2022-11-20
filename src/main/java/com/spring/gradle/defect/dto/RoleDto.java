@@ -5,9 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class StatusDto {
-    private int defect_id;
-    private String status;
-
+public class RoleDto {
+    private int id;
+    private String role_name;
 }
-

@@ -1,14 +1,18 @@
 package com.spring.gradle.defect.service;
 
-import java.util.List;
-
 import com.spring.gradle.defect.dto.ProjectDto;
 import com.spring.gradle.defect.entity.Project;
 
+import java.util.List;
+
 public interface ProjectService {
-	public void createProject(ProjectDto projectDto);
-	public List<Project>getAllProject();
-	public Project getProjectById(int proId);
-	public void deleteProject(int proId);
-	public void updateProject(ProjectDto projectDto);
+    void createProject(ProjectDto projectDto);
+
+    List<Project> getAllProject();
+
+    Project getProjectById(int proId);
+
+    void deleteProject(int proId);
+
+    void updateProject(ProjectDto projectDto);
 }

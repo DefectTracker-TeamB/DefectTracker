@@ -7,14 +7,10 @@ import lombok.Setter;
 @Setter
 public class ModuleDto {
 
-	private int id;
-	private String name;
-	private int Developer_Team_id;
-	private int tester_Team_id;
-	private int project_id;
-	private String description;
-
-
-
-	
+    private int id;
+    private String name;
+    private int Developer_Team_id;
+    private int tester_Team_id;
+    private int project_id;
+    private String description;
 }

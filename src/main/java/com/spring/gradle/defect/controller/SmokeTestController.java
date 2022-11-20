@@ -1,58 +1,44 @@
 package com.spring.gradle.defect.controller;
 
-import java.util.List;
-
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.spring.gradle.defect.dto.SmokeTestDto;
-import com.spring.gradle.defect.entity.SmokeTest;
 import com.spring.gradle.defect.service.SmokeTestService;
 import com.spring.gradle.defect.util.Constants;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/smokeTest")
 @RestController
 public class SmokeTestController {
 
-	@Autowired
-	private SmokeTestService smoketestService;
+    @Autowired
+    private SmokeTestService smoketestService;
 
-	@PostMapping("/saveTest")
-	public ResponseEntity<Object>saveTest(@RequestBody SmokeTestDto smokeTestDto){
-		smoketestService.saveTest(smokeTestDto);
-		return ResponseEntity.ok("Test saved");
-	}
-	@PostMapping("/editTest")
-	public ResponseEntity<Object>editTest(@RequestBody SmokeTestDto smokeTestDto){
-		smoketestService.editSmokeById(smokeTestDto);
-		return ResponseEntity.ok("Test edited");
-	}
+    @PostMapping("/saveTest")
+    public ResponseEntity<Object> saveTest(@RequestBody SmokeTestDto smokeTestDto) {
+        smoketestService.saveTest(smokeTestDto);
+        return ResponseEntity.ok("Test saved");
+    }
 
-	//create
+    @PostMapping("/editTest")
+    public ResponseEntity<Object> editTest(@RequestBody SmokeTestDto smokeTestDto) {
+        smoketestService.editSmokeById(smokeTestDto);
+        return ResponseEntity.ok("Test edited");
+    }
 
-	// GET ALL SmokeTests
-	@GetMapping(Constants.GETALLSMOKE)
-	public ResponseEntity<Object> getSmokeTests() {
-		return ResponseEntity.ok(smoketestService.getAllSmokeTests());
-	}
+    //create
 
-	// Get By id
-	@GetMapping(Constants.GETBYSMOKEID)
-	public ResponseEntity<Object> getSmokeTests(@PathVariable int id) {
-		return ResponseEntity.ok(smoketestService.getSmokeTestById(id));
-	}
+    // GET ALL SmokeTests
+    @GetMapping(Constants.GETALLSMOKE)
+    public ResponseEntity<Object> getSmokeTests() {
+        return ResponseEntity.ok(smoketestService.getAllSmokeTests());
+    }
+
+    // Get By id
+    @GetMapping(Constants.GETBYSMOKEID)
+    public ResponseEntity<Object> getSmokeTests(@PathVariable int id) {
+        return ResponseEntity.ok(smoketestService.getSmokeTestById(id));
+    }
 
 
-
-
-	
 }
