@@ -4,7 +4,7 @@ import com.spring.gradle.defect.entity.Roles;
 import com.spring.gradle.defect.entity.User;
 import com.spring.gradle.defect.repository.UserRepository;
 import io.jsonwebtoken.*;
-import jdk.jpackage.internal.Log;
+
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,8 +16,7 @@ import java.util.logging.Logger;
 
 @Service
 public class JWTUtility {
-    @Autowired
-    private UserRepository userRepository;
+   
     private static final String Secret_Key = "defect_tracker";
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger(JWTUtility.class);
 

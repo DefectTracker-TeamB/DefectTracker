@@ -38,7 +38,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
             "/user/**",
             "/roles/**"
     };
-    private static final String[] ADMIN_AUTH_LIST={};
+    private static final String[] ADMIN_AUTH_LIST={"/roles/**"};
     private static final String[] PM_AUTH_LIST={"/members/**","/project/**","/module/**"};
     private static final String[] DEVELOPER_AUTH_LIST={"/defect/getAll","/defect/get/{id}"
             ,"/defect/status","/release/**"};
@@ -70,7 +70,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(AUTH_WHITELIST).permitAll()
                 .antMatchers("/user/**").permitAll()
-                .antMatchers("/roles/**").permitAll()
                 .antMatchers(ADMIN_AUTH_LIST).hasRole("ADMIN")
                 .antMatchers(PM_AUTH_LIST).hasRole("PM")
                 .antMatchers(DEVELOPER_AUTH_LIST).hasRole("DEVELOPER")

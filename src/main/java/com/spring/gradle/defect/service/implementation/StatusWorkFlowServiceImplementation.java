@@ -39,7 +39,7 @@ public class StatusWorkFlowServiceImplementation implements StatusWorkFlowServic
 	}
 
 	@Override
-	public StatusWorkFlow getStatusWorkFlowById(int id) {
+	public StatusWorkFlow getStatusWorkFlowById(Long id) {
 
 		return statusWorkFlowRepo.findById(id).get();
 	}

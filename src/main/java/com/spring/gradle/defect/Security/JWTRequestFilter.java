@@ -26,8 +26,7 @@ import java.util.List;
 public class JWTRequestFilter extends OncePerRequestFilter {
     @Autowired
     private JWTUtility jwtUtility;
-    @Autowired
-    private CustomUserDetails customUserDetails;
+   
     private final List<String> excludeUrlPatterns = new ArrayList<String>(Arrays.asList("/swagger-ui.html",
             "/swagger-uui.html", "/webjars/springfox-swagger-ui/springfox.css",
             "/webjars/springfox-swagger-ui/swagger-ui-bundle.js", "/webjars/springfox-swagger-ui/swagger-ui.css",

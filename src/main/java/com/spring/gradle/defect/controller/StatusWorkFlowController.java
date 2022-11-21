@@ -35,7 +35,7 @@ public class StatusWorkFlowController {
 
 	// Get By id
 	@GetMapping("/getById")
-	public ResponseEntity<Object> getStatusWorkFlow(@PathVariable int id) {
+	public ResponseEntity<Object> getStatusWorkFlow(@PathVariable Long id) {
 		return ResponseEntity.ok(statusWorkFlowService.getStatusWorkFlowById(id));
 	}
 

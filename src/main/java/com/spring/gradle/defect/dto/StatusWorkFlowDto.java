@@ -7,10 +7,11 @@ import com.spring.gradle.defect.entity.Status;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
+
 @Setter
+@Getter
 public class StatusWorkFlowDto {
-	private int id;
+	private Long id;
 	private Status status;
 
 	private List<Status> statusWorkflow;

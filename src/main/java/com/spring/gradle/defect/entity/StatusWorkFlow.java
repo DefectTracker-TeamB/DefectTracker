@@ -23,7 +23,7 @@ import lombok.Setter;
 public class StatusWorkFlow {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	private Status status;
 
 	@OneToMany

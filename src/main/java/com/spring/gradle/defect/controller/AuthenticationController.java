@@ -34,6 +34,7 @@ public class AuthenticationController {
                     authenticationDto.getPassword()));
             User user= (User) authentication.getPrincipal();
             final String jwt = jwtUtility.generateAccessToken(user);
+            
             return ResponseEntity.ok().body(new AuthResponseDto(jwt));
 
         } catch (BadCredentialsException e) {

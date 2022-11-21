@@ -10,7 +10,7 @@ public interface StatusWorkFlowService {
 
 	List<StatusWorkFlow> getAllStatusWorkFlow();
 
-	StatusWorkFlow getStatusWorkFlowById(int id);
+	StatusWorkFlow getStatusWorkFlowById(Long id);
 
 	void updateStatusWorkFlow(StatusWorkFlowDto statusWorkFlowDto);
 
