@@ -11,9 +11,14 @@ import com.spring.gradle.defect.repository.ModuleRepository;
 import com.spring.gradle.defect.repository.ProjectRepository;
 import com.spring.gradle.defect.repository.ReleaseRepository;
 import com.spring.gradle.defect.service.DefectService;
+import com.spring.gradle.defect.service.WSService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -21,6 +26,10 @@ public class DefectImplementation implements DefectService {
 
     @Autowired
     private DefectRepository defectRepository;
+    @Autowired  WSService service;
+	final DateFormat DATE_FORMATTER = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a ");
+	static String message1="Assaigned A New Defect..!";
+	static String message2=" Defect Sucessfully Updated..!";
     @Autowired
     private ProjectRepository projectRepository;
     @Autowired
@@ -48,6 +57,7 @@ public class DefectImplementation implements DefectService {
         defect.setModule(module);
         defect.setProject(project);
         defectRepository.save(defect);
+        service.notifyFrontend((DATE_FORMATTER.format(new Date()) + module.getAssignedTester()) +"&nbsp" +message1.toString());
     }
 
     // get all
@@ -91,6 +101,7 @@ public class DefectImplementation implements DefectService {
         defect.setModule(module);
         defect.setProject(project);
         defectRepository.save(defect);
+        service.notifyFrontend((DATE_FORMATTER.format(new Date()) + module.getAssignedTester()) +"&nbsp" +message2.toString());
     }
 
     @Override
