@@ -6,13 +6,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ReleaseDto {
-	private int id;
-	private String releaseVersion;
-	private String apiLink;
-	private String uploadFile;
-	private int project_id;
+    private int id;
+    private String releaseVersion;
+    private String apiLink;
+    private String uploadFile;
+    private int project_id;
 
 
-	
-	
 }

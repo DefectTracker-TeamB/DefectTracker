@@ -8,12 +8,9 @@ import com.spring.gradle.defect.repository.MemberRepo;
 import com.spring.gradle.defect.repository.ProjectRepository;
 import com.spring.gradle.defect.repository.UserRepository;
 import com.spring.gradle.defect.service.MemberService;
-import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -28,19 +25,19 @@ public class MemberImplementation implements MemberService {
 
     @Override
     public String saveMember(TeamMemberDto teamMemberDto) {
-        TeamMember teamMember=new TeamMember();
-        Project project=projectRepository.findById(teamMemberDto.getProject_id()).orElse(new Project());
-        User user=userRepository.findById(teamMemberDto.getUser_id()).orElse(new User());
+        TeamMember teamMember = new TeamMember();
+        Project project = projectRepository.findById(teamMemberDto.getProject_id()).orElse(new Project());
+        User user = userRepository.findById(teamMemberDto.getUser_id()).orElse(new User());
         teamMember.setName(user.getName());
         teamMember.setContribution(teamMemberDto.getContribution());
         teamMember.setRole(teamMemberDto.getRole());
         teamMember.setUser(user);
         teamMember.setProject(project);
-        if(user.getAvailability()-teamMemberDto.getContribution()<0){
+        if (user.getAvailability() - teamMemberDto.getContribution() < 0) {
             return "Contribution>availability-> cannot assigned";
 
-        }else {
-            user.setAvailability(user.getAvailability()-teamMemberDto.getContribution());
+        } else {
+            user.setAvailability(user.getAvailability() - teamMemberDto.getContribution());
             userRepository.save(user);
             memberRepo.save(teamMember);
             return "added to project";
@@ -49,10 +46,10 @@ public class MemberImplementation implements MemberService {
 
     @Override
     public void deleteMember(int id) {
-        TeamMember teamMember=memberRepo.findById(id).orElse(new TeamMember());
+        TeamMember teamMember = memberRepo.findById(id).orElse(new TeamMember());
         memberRepo.deleteById(id);
-        User user=userRepository.findById(teamMember.getUser().getId()).orElse(new User());
-        user.setAvailability(user.getAvailability()+teamMember.getContribution());
+        User user = userRepository.findById(teamMember.getUser().getId()).orElse(new User());
+        user.setAvailability(user.getAvailability() + teamMember.getContribution());
         userRepository.save(user);
 
 
@@ -65,20 +62,20 @@ public class MemberImplementation implements MemberService {
 
     @Override
     public String editMembers(TeamMemberDto teamMemberDto) {
-        TeamMember teamMember=memberRepo.findById(teamMemberDto.getId()).orElse(new TeamMember());
-        Project project=projectRepository.findById(teamMemberDto.getProject_id()).orElse(new Project());
-        User user=userRepository.findById(teamMemberDto.getUser_id()).orElse(new User());
-        user.setAvailability(user.getAvailability()+teamMember.getContribution());
+        TeamMember teamMember = memberRepo.findById(teamMemberDto.getId()).orElse(new TeamMember());
+        Project project = projectRepository.findById(teamMemberDto.getProject_id()).orElse(new Project());
+        User user = userRepository.findById(teamMemberDto.getUser_id()).orElse(new User());
+        user.setAvailability(user.getAvailability() + teamMember.getContribution());
         teamMember.setName(user.getName());
         teamMember.setContribution(teamMemberDto.getContribution());
         teamMember.setRole(teamMemberDto.getRole());
         teamMember.setUser(user);
         teamMember.setProject(project);
-        if(user.getAvailability()-teamMemberDto.getContribution()<0){
+        if (user.getAvailability() - teamMemberDto.getContribution() < 0) {
             return "Contribution>availability-> cannot assigned";
 
-        }else {
-            user.setAvailability(user.getAvailability()-teamMemberDto.getContribution());
+        } else {
+            user.setAvailability(user.getAvailability() - teamMemberDto.getContribution());
             userRepository.save(user);
             memberRepo.save(teamMember);
             return "edited successfully";

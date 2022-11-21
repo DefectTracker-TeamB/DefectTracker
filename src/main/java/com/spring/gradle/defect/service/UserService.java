@@ -1,19 +1,28 @@
 package com.spring.gradle.defect.service;
 
-import java.util.List;
-
+import com.spring.gradle.defect.dto.EmpServiceUserDto;
+import com.spring.gradle.defect.dto.RoleAssignDto;
 import com.spring.gradle.defect.dto.UserDto;
-import com.spring.gradle.defect.entity.User;  
+import com.spring.gradle.defect.entity.User;
+
+import java.util.List;
 
 public interface UserService {
 
-	void saveUser(UserDto userDto);
-	void updateUser(UserDto userDto);
-	User getUserById(int id);
-	String deleteUserByEmpId(int emp_id);
-	List<User> getUsersByAvailability();
+    void saveUser(EmpServiceUserDto empServiceUserDto);
 
-	User getUserByEmpId(int emp_id);
+    void updateUser(UserDto userDto);
+
+    User getUserById(int id);
+
+    String deleteUserByEmpId(int emp_id);
+
+    List<User> getUsersByAvailability();
+    void setRoles(RoleAssignDto roleAssignDto);
+
+    User getUserByEmpId(int emp_id);
+
+    User findByUsername(String username);
 
 }
 

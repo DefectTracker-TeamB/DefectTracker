@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class StatusDto {
     private int defect_id;
-	private String status;
+    private String status;
 
 }
 

@@ -22,7 +22,7 @@ public class Releases {
     @JsonBackReference
     private Project project;
 
-    @OneToOne(fetch = FetchType.LAZY,mappedBy = "releases",cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "releases", cascade = CascadeType.ALL)
     @JsonBackReference
     private SmokeTest smokeTest;
 

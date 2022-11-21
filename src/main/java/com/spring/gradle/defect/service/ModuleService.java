@@ -1,19 +1,19 @@
 package com.spring.gradle.defect.service;
 
-import java.util.List;
+import com.spring.gradle.defect.dto.ModuleDto;
 import com.spring.gradle.defect.entity.Module;
 
-import com.spring.gradle.defect.dto.ModuleDto;
+import java.util.List;
 
 public interface ModuleService {
-	public void createModule(ModuleDto moduleDto);
+    void createModule(ModuleDto moduleDto);
 
-	public List<Module> getAllModule();
+    List<Module> getAllModule();
 
-	public Module getModuleById(int id);
+    Module getModuleById(int id);
 
-	public void deleteModule(int id);
+    void deleteModule(int id);
 
-	public void updateModule(ModuleDto moduleDto);
+    void updateModule(ModuleDto moduleDto);
 
 }

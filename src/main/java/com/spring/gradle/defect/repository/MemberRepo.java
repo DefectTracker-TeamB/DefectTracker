@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface MemberRepo extends JpaRepository<TeamMember,Integer> {
-    @Query(value = "select * from team_member where project_id",nativeQuery = true)
-    public List<TeamMember>getAllByProjectId(int id);
+public interface MemberRepo extends JpaRepository<TeamMember, Integer> {
+    @Query(value = "select * from team_member where project_id", nativeQuery = true)
+    List<TeamMember> getAllByProjectId(int id);
 }
