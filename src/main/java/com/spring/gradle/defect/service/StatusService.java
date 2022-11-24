@@ -12,9 +12,9 @@ public interface StatusService {
 
     List<StatusDto> getAllStatus();
 
-    StatusDto getStatusById(Long id);
+    StatusDto getStatusById(long id);
 
-    void deleteStatus(Long id);
+    void deleteStatus(long id);
 
     void updateStatus(Status status);
 

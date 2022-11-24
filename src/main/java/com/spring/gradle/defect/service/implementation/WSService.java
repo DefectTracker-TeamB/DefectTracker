@@ -1,5 +1,6 @@
-package com.spring.gradle.defect.service;
+package com.spring.gradle.defect.service.implementation;
 
+import com.spring.gradle.defect.service.implementation.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;

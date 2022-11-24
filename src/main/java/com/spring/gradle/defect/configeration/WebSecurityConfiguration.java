@@ -2,6 +2,7 @@ package com.spring.gradle.defect.configeration;
 
 import com.spring.gradle.defect.Security.CustomUserDetails;
 import com.spring.gradle.defect.Security.JWTRequestFilter;
+import com.spring.gradle.defect.repository.RoleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +15,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
@@ -24,6 +26,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
         jsr250Enabled = true
 )
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
+    @Autowired
+    private RoleRepo roleRepo;
     private static final String[] AUTH_WHITELIST = {
             // -- Swagger UI v2
             "/v2/api-docs",
@@ -35,19 +39,20 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
             "/swagger-ui/**",
             "/webjars/**",
             "/authenticate/**",
-            "/user/**",
-            "/roles/**"
     };
     private static final String[] ADMIN_AUTH_LIST={"/roles/**"};
     private static final String[] PM_AUTH_LIST={"/members/**","/project/**","/module/**"};
     private static final String[] DEVELOPER_AUTH_LIST={"/defect/getAll","/defect/get/{id}"
             ,"/defect/status","/release/**"};
-    private static final String[] QA_AUTH_LIST={"/defect/**","/smokeTest/**"};
+    private static final String[] QA_AUTH_LIST={"/defect/**","/smokeTest/**","/defect/getAll",
+            "/defect/get/{id}","/defect/status"};
 
     @Autowired
     private CustomUserDetails userService;
     @Autowired
     private JWTRequestFilter jwtRequestFilter;
+    @Autowired
+    private AccessDeniedHandler handler;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -75,8 +80,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(DEVELOPER_AUTH_LIST).hasRole("DEVELOPER")
                 .antMatchers(QA_AUTH_LIST).hasRole("QA")
                 .anyRequest()
-                .authenticated().and().sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .authenticated().and().exceptionHandling().accessDeniedHandler(handler)
+                .and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
