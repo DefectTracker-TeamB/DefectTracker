@@ -80,9 +80,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(DEVELOPER_AUTH_LIST).hasRole("DEVELOPER")
                 .antMatchers(QA_AUTH_LIST).hasRole("QA")
                 .anyRequest()
-                .authenticated().and().exceptionHandling().accessDeniedHandler(handler)
-                .and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .authenticated()
+                .and().exceptionHandling()
+                .accessDeniedHandler(handler)
+                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }

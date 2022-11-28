@@ -4,6 +4,7 @@ import com.spring.gradle.defect.dto.DefectDto;
 import com.spring.gradle.defect.dto.StatusDto;
 import com.spring.gradle.defect.entity.Defect;
 import com.spring.gradle.defect.entity.Module;
+import com.spring.gradle.defect.entity.Notification;
 import com.spring.gradle.defect.entity.Project;
 import com.spring.gradle.defect.entity.Releases;
 import com.spring.gradle.defect.repository.DefectRepository;
@@ -26,6 +27,7 @@ public class DefectImplementation implements DefectService {
     @Autowired
     private DefectRepository defectRepository;
     @Autowired  WSService service;
+    @Autowired NotificationImplementation MNotificationService;
 	final DateFormat DATE_FORMATTER = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a ");
 	static String message1="Assaigned A New Defect..!";
 	static String message2=" Defect Sucessfully Updated..!";
@@ -39,7 +41,7 @@ public class DefectImplementation implements DefectService {
 
     //create
     @Override
-    public void saveDefect(DefectDto defectDto) {
+    public void saveDefect(DefectDto defectDto , Notification notification) {
         Defect defect = new Defect();
         Module module = moduleRepository.findById(defectDto.getModule_id()).get();
         Project project = projectRepository.findById(defectDto.getProject_id()).get();
@@ -56,7 +58,12 @@ public class DefectImplementation implements DefectService {
         defect.setModule(module);
         defect.setProject(project);
         defectRepository.save(defect);
+        Notification notific=new Notification();
+		notific.setDefect(defect);
+		notific.setMessage((DATE_FORMATTER.format(new Date()) + module.getAssignedTester()) +"&nbsp" +message1.toString());
+		MNotificationService.saveNotific(notific);
         service.notifyFrontend((DATE_FORMATTER.format(new Date()) + module.getAssignedTester()) +"&nbsp" +message1.toString());
+       // service.notifyFrontend((DATE_FORMATTER.format(new Date()) + module.getAssignedTester()) +"&nbsp" +message1.toString());
     }
 
     // get all

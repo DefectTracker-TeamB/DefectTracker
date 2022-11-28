@@ -4,7 +4,6 @@ import com.spring.gradle.defect.entity.Roles;
 import com.spring.gradle.defect.entity.User;
 import com.spring.gradle.defect.repository.UserRepository;
 import io.jsonwebtoken.*;
-import jdk.jpackage.internal.Log;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
