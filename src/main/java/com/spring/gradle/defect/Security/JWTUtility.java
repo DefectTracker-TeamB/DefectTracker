@@ -2,17 +2,11 @@ package com.spring.gradle.defect.Security;
 
 import com.spring.gradle.defect.entity.Roles;
 import com.spring.gradle.defect.entity.User;
-import com.spring.gradle.defect.repository.UserRepository;
 import io.jsonwebtoken.*;
-import jdk.jpackage.internal.Log;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.function.Function;
-import java.util.logging.Logger;
 
 @Service
 public class JWTUtility {
