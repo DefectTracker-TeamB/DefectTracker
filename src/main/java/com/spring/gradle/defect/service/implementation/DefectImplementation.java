@@ -41,7 +41,7 @@ public class DefectImplementation implements DefectService {
 
     //create
     @Override
-    public void saveDefect(DefectDto defectDto , Notification notification) {
+    public void saveDefect(DefectDto defectDto) {
         Defect defect = new Defect();
         Module module = moduleRepository.findById(defectDto.getModule_id()).get();
         Project project = projectRepository.findById(defectDto.getProject_id()).get();

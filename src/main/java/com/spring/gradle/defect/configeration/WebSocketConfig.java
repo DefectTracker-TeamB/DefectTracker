@@ -23,4 +23,6 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 		//WebSocketMessageBrokerConfigurer.super.registerStompEndpoints(registry);
 		registry.addEndpoint("/our-websocket").withSockJS();
 	}
+	
+	
 }

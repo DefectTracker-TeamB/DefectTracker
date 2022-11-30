@@ -16,11 +16,17 @@ function connect() {
     stompClient.connect({}, function (frame) {
         console.log('Connected: ' + frame);
       	updateNotificationDisplay();
+      	
         stompClient.subscribe('/topic/messages', function (message) {
             showMessage(JSON.parse(message.body).content);
         });
        
        stompClient.subscribe('/topic/global-notifications', function (message) {
+            notificationCount = notificationCount + 1;
+            updateNotificationDisplay();
+        });
+        
+        stompClient.subscribe('/user/topic/private-notifications', function (message) {
             notificationCount = notificationCount + 1;
             updateNotificationDisplay();
         });

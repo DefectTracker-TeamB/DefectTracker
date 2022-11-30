@@ -22,8 +22,8 @@ public class DefectController {
 
     // Create defect
     @PostMapping(Constants.CREATEDEFECT)
-    public ResponseEntity<Object> createDefect(@RequestBody DefectDto defectDto,Notification notification) {
-        defectService.saveDefect(defectDto,notification);
+    public ResponseEntity<Object> createDefect(@RequestBody DefectDto defectDto) {
+        defectService.saveDefect(defectDto);
         return ResponseEntity.ok(" Defect Successfully created!");
 
     }

@@ -9,8 +9,8 @@ import java.util.List;
 
 public interface DefectService {
 
-	void saveDefect(DefectDto defectDto, Notification notification);
-    //void saveDefect(DefectDto defectDto);
+	//void saveDefect(DefectDto defectDto, Notification notification);
+    void saveDefect(DefectDto defectDto);
 
     List<Defect> getAllDefect();
 

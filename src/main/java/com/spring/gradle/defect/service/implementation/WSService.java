@@ -22,9 +22,16 @@ public class WSService {
         notificationService.sendGlobalNotification();
         messagingTemplate.convertAndSend("/topic/messages", response);
     }
+	
+//	  public void notifyUser(final String id, final String message) {
+//	       	Notification response = new Notification(message);
+//	        notificationService.sendPrivateNotification(id);
+//	        messagingTemplate.convertAndSendToUser(id,"topic/private-messages",response);
+//	    }
 
-	public static void saveNotification(Notification notification) {
-		// TODO Auto-generated method stub
-		
+//	public void notifyFrontend(String string) {
+//		// TODO Auto-generated method stub
+//		
+//	}
 	}
-}
+
