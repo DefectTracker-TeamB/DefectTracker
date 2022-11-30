@@ -2,14 +2,14 @@ package com.spring.gradle.defect.controller;
 
 import com.spring.gradle.defect.dto.DefectDto;
 import com.spring.gradle.defect.dto.StatusDto;
-import com.spring.gradle.defect.entity.Notification;
+import com.spring.gradle.defect.repository.RoleRepo;
 import com.spring.gradle.defect.service.DefectService;
 import com.spring.gradle.defect.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
+import javax.annotation.security.RolesAllowed;
 
 @RequestMapping("/defect")
 @RestController
@@ -17,13 +17,12 @@ public class DefectController {
 
     @Autowired
     DefectService defectService;
-//    @Autowired MNotificationService mnotificationService;
 
 
     // Create defect
     @PostMapping(Constants.CREATEDEFECT)
-    public ResponseEntity<Object> createDefect(@RequestBody DefectDto defectDto,Notification notification) {
-        defectService.saveDefect(defectDto,notification);
+    public ResponseEntity<Object> createDefect(@RequestBody DefectDto defectDto) {
+        defectService.saveDefect(defectDto);
         return ResponseEntity.ok(" Defect Successfully created!");
 
     }
@@ -47,7 +46,6 @@ public class DefectController {
     @PutMapping(Constants.PUT_DEFECT)
     public ResponseEntity<Object> updateDefect(@RequestBody DefectDto defectDto) {
         defectService.updateDefect(defectDto);
-        //mnotificationService.saveNotific(notification);
         return ResponseEntity.ok().body("Successfully edited");
 
     }

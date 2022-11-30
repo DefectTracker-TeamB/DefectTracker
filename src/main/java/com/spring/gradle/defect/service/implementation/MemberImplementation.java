@@ -11,7 +11,6 @@ import com.spring.gradle.defect.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -24,13 +23,11 @@ public class MemberImplementation implements MemberService {
     private UserRepository userRepository;
 
 
-
-
     @Override
     public String saveMember(TeamMemberDto teamMemberDto) {
         TeamMember teamMember = new TeamMember();
-        Project project = projectRepository.findById(teamMemberDto.getProject_id()).get();
-        User user = userRepository.findById(teamMemberDto.getUser_id()).get();
+        Project project = projectRepository.findById(teamMemberDto.getProject_id()).orElse(new Project());
+        User user = userRepository.findById(teamMemberDto.getUser_id()).orElse(new User());
         teamMember.setName(user.getName());
         teamMember.setContribution(teamMemberDto.getContribution());
         teamMember.setRole(teamMemberDto.getRole());
@@ -40,13 +37,9 @@ public class MemberImplementation implements MemberService {
             return "Contribution>availability-> cannot assigned";
 
         } else {
-            String message="You are added to the"+project.getName()+"Project as a "+teamMemberDto.getRole();
-            List<String>user_message=new ArrayList<>();
             user.setAvailability(user.getAvailability() - teamMemberDto.getContribution());
             userRepository.save(user);
             memberRepo.save(teamMember);
-            user_message.add(user.getUsername());
-            user_message.add(message);
             return "added to project";
         }
     }
@@ -55,7 +48,7 @@ public class MemberImplementation implements MemberService {
     public void deleteMember(int id) {
         TeamMember teamMember = memberRepo.findById(id).orElse(new TeamMember());
         memberRepo.deleteById(id);
-        User user = userRepository.findById(teamMember.getUser().getId()).get();
+        User user = userRepository.findById(teamMember.getUser().getId()).orElse(new User());
         user.setAvailability(user.getAvailability() + teamMember.getContribution());
         userRepository.save(user);
 
@@ -69,9 +62,9 @@ public class MemberImplementation implements MemberService {
 
     @Override
     public String editMembers(TeamMemberDto teamMemberDto) {
-        TeamMember teamMember = memberRepo.findById(teamMemberDto.getId()).get();
-        Project project = projectRepository.findById(teamMemberDto.getProject_id()).get();
-        User user = userRepository.findById(teamMemberDto.getUser_id()).get();
+        TeamMember teamMember = memberRepo.findById(teamMemberDto.getId()).orElse(new TeamMember());
+        Project project = projectRepository.findById(teamMemberDto.getProject_id()).orElse(new Project());
+        User user = userRepository.findById(teamMemberDto.getUser_id()).orElse(new User());
         user.setAvailability(user.getAvailability() + teamMember.getContribution());
         teamMember.setName(user.getName());
         teamMember.setContribution(teamMemberDto.getContribution());

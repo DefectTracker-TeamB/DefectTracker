@@ -4,7 +4,6 @@ import com.spring.gradle.defect.dto.DefectDto;
 import com.spring.gradle.defect.dto.StatusDto;
 import com.spring.gradle.defect.entity.Defect;
 import com.spring.gradle.defect.entity.Module;
-import com.spring.gradle.defect.entity.Notification;
 import com.spring.gradle.defect.entity.Project;
 import com.spring.gradle.defect.entity.Releases;
 import com.spring.gradle.defect.repository.DefectRepository;
@@ -12,6 +11,7 @@ import com.spring.gradle.defect.repository.ModuleRepository;
 import com.spring.gradle.defect.repository.ProjectRepository;
 import com.spring.gradle.defect.repository.ReleaseRepository;
 import com.spring.gradle.defect.service.DefectService;
+import com.spring.gradle.defect.service.WSService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,10 +27,9 @@ public class DefectImplementation implements DefectService {
     @Autowired
     private DefectRepository defectRepository;
     @Autowired  WSService service;
-    @Autowired NotificationImplementation MNotificationService;
 	final DateFormat DATE_FORMATTER = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a ");
-	static String message1="Assaigned A New Defect To";
-	static String message2=" Defect Sucessfully Updated By";
+	static String message1="Assaigned A New Defect..!";
+	static String message2=" Defect Sucessfully Updated..!";
     @Autowired
     private ProjectRepository projectRepository;
     @Autowired
@@ -41,11 +40,11 @@ public class DefectImplementation implements DefectService {
 
     //create
     @Override
-    public void saveDefect(DefectDto defectDto , Notification notification) {
+    public void saveDefect(DefectDto defectDto) {
         Defect defect = new Defect();
-        Module module = moduleRepository.findById(defectDto.getModule_id()).get();
-        Project project = projectRepository.findById(defectDto.getProject_id()).get();
-        Releases release = releaseRepository.findById(defectDto.getRelease_id()).get();
+        Module module = moduleRepository.findById(defectDto.getModule_id()).orElse(new Module());
+        Project project = projectRepository.findById(defectDto.getProject_id()).orElse(new Project());
+        Releases release = releaseRepository.findById(defectDto.getRelease_id()).orElse(new Releases());
         defect.setAssign_to(module.getAssignedDeveloper());
         defect.setAssignee(module.getAssignedTester());
         defect.setDescription(defectDto.getDescription());
@@ -58,12 +57,7 @@ public class DefectImplementation implements DefectService {
         defect.setModule(module);
         defect.setProject(project);
         defectRepository.save(defect);
-        Notification notific=new Notification();
-		notific.setDefect(defect);
-		notific.setMessage((DATE_FORMATTER.format(new Date()) + module.getAssignedTester())+" "+message1.toString()+" "+module.getAssignedTester());
-		MNotificationService.saveNotific(notific);
-        service.notifyFrontend((DATE_FORMATTER.format(new Date()) + module.getAssignedTester())+" "+message1.toString()+" "+module.getAssignedTester());
-      
+        service.notifyFrontend((DATE_FORMATTER.format(new Date()) + module.getAssignedTester()) +"&nbsp" +message1.toString());
     }
 
     // get all
@@ -77,7 +71,7 @@ public class DefectImplementation implements DefectService {
     // get by id
     @Override
     public Defect getDefectById(int id) {
-        return defectRepository.findById(id).get();
+        return defectRepository.findById(id).orElse(new Defect());
 
     }
 
@@ -93,9 +87,9 @@ public class DefectImplementation implements DefectService {
     public void updateDefect(DefectDto defectDto) {
 
         Defect defect = defectRepository.findById(defectDto.getId()).get();
-        Module module = moduleRepository.findById(defectDto.getModule_id()).get();
-        Project project = projectRepository.findById(defectDto.getProject_id()).get();
-        Releases release = releaseRepository.findById(defectDto.getRelease_id()).get();
+        Module module = moduleRepository.findById(defectDto.getModule_id()).orElse(new Module());
+        Project project = projectRepository.findById(defectDto.getProject_id()).orElse(new Project());
+        Releases release = releaseRepository.findById(defectDto.getRelease_id()).orElse(new Releases());
         defect.setAssign_to(module.getAssignedDeveloper());
         defect.setAssignee(module.getAssignedTester());
         defect.setDescription(defectDto.getDescription());
@@ -107,16 +101,12 @@ public class DefectImplementation implements DefectService {
         defect.setModule(module);
         defect.setProject(project);
         defectRepository.save(defect);
-        Notification notific=new Notification();
-        notific.setDefect(defect);
-		notific.setMessage((DATE_FORMATTER.format(new Date())+""+message2.toString()+" "+ module.getAssignedTester()));
-		MNotificationService.saveNotific(notific);
-        service.notifyFrontend((DATE_FORMATTER.format(new Date())+""+message2.toString()+" "+  module.getAssignedTester()));
+        service.notifyFrontend((DATE_FORMATTER.format(new Date()) + module.getAssignedTester()) +"&nbsp" +message2.toString());
     }
 
     @Override
     public void setStatus(StatusDto statusDto) {
-        Defect defect = defectRepository.findById(statusDto.getDefect_id()).get();
+        Defect defect = defectRepository.findById(statusDto.getDefect_id()).orElse(new Defect());
         String status = statusDto.getStatus();
         if (defect.getStatus().contains("New")) {
             if (status.contains("Open")) {

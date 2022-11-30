@@ -4,9 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.*;
 
 @Entity
@@ -37,10 +34,6 @@ public class Defect {
     @ManyToOne
     @JsonIgnore
     private Project project;
-    
-    @OneToMany(mappedBy = "defect",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JsonIgnore
-	private List<Notification> notification=new ArrayList<>();	
 
 
 }

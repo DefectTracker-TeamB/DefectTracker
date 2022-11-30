@@ -4,6 +4,7 @@ import com.spring.gradle.defect.dto.ProjectDto;
 import com.spring.gradle.defect.entity.Project;
 import com.spring.gradle.defect.repository.ProjectRepository;
 import com.spring.gradle.defect.service.ProjectService;
+import com.spring.gradle.defect.service.WSService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

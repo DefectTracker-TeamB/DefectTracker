@@ -45,7 +45,7 @@ public class StatusServiceImplementation implements StatusService {
 
     //get status id
     @Override
-    public StatusDto getStatusById(long id) {
+    public StatusDto getStatusById(Long id) {
         Status status = statusRepository.findById(id).get();
         StatusDto statusDto = new StatusDto();
         BeanUtils.copyProperties(status, statusDto);
@@ -68,7 +68,7 @@ public class StatusServiceImplementation implements StatusService {
 
     // Delete status
     @Override
-    public void deleteStatus(long id) {
+    public void deleteStatus(Long id) {
 
         statusRepository.deleteById(id);
 

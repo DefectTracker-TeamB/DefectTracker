@@ -6,7 +6,6 @@ import com.spring.gradle.defect.dto.AuthResponseDto;
 import com.spring.gradle.defect.dto.AuthenticationDto;
 import com.spring.gradle.defect.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -27,8 +26,6 @@ public class AuthenticationController {
     @Autowired
     private JWTUtility jwtUtility;
 
-
-
     @PostMapping("/login")
     public ResponseEntity<Object> createAuthToken(@RequestBody AuthenticationDto authenticationDto) throws Exception {
 
@@ -38,10 +35,10 @@ public class AuthenticationController {
             User user= (User) authentication.getPrincipal();
             final String jwt = jwtUtility.generateAccessToken(user);
             
-            return ResponseEntity.ok().body("login Successfull\n "+"token : "+jwt);
+            return ResponseEntity.ok().body(new AuthResponseDto(jwt));
 
         } catch (BadCredentialsException e) {
-            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("Invalid credentials");
+            throw new Exception("Invalid Credentials");
         }
 
 
