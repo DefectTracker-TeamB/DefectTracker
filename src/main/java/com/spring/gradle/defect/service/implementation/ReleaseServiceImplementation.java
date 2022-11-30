@@ -24,7 +24,7 @@ public class ReleaseServiceImplementation implements ReleaseService {
     @Override
     public void createRelease(ReleaseDto releaseDto) {
         Releases release = new Releases();
-        Project project = projectRepository.findById(releaseDto.getProject_id()).orElse(new Project());
+        Project project = projectRepository.findById(releaseDto.getProject_id()).get();
         release.setUpload_file(releaseDto.getUploadFile());
         release.setRelease_version(releaseDto.getReleaseVersion());
         release.setApi_link(releaseDto.getApiLink());
@@ -46,7 +46,7 @@ public class ReleaseServiceImplementation implements ReleaseService {
     @Override
     public void updateRelease(ReleaseDto releaseDto) {
         Releases release = releaseRepository.findById(releaseDto.getId()).get();
-        Project project = projectRepository.findById(releaseDto.getProject_id()).orElse(new Project());
+        Project project = projectRepository.findById(releaseDto.getProject_id()).get();
         release.setUpload_file(releaseDto.getUploadFile());
         release.setRelease_version(releaseDto.getReleaseVersion());
         release.setApi_link(releaseDto.getApiLink());

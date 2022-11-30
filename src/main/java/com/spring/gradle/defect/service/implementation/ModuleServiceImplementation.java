@@ -27,8 +27,8 @@ public class ModuleServiceImplementation implements ModuleService {
     @Override
     public void createModule(ModuleDto moduleDto) {
         Module module = new Module();
-        TeamMember developer = memberRepo.findById(moduleDto.getDeveloper_Team_id()).orElse(new TeamMember());
-        TeamMember tester = memberRepo.findById(moduleDto.getTester_Team_id()).orElse(new TeamMember());
+        TeamMember developer = memberRepo.findById(moduleDto.getDeveloper_Team_id()).get();
+        TeamMember tester = memberRepo.findById(moduleDto.getTester_Team_id()).get();
         Project project = projectRepository.findById(moduleDto.getProject_id()).get();
         module.setName(moduleDto.getName());
         module.setAssignedTester(tester.getName());
@@ -57,9 +57,9 @@ public class ModuleServiceImplementation implements ModuleService {
 
     @Override
     public void updateModule(ModuleDto moduleDto) {
-        Module module = moduleRepository.findById(moduleDto.getId()).orElse(new Module());
-        TeamMember developer = memberRepo.findById(moduleDto.getDeveloper_Team_id()).orElse(new TeamMember());
-        TeamMember tester = memberRepo.findById(moduleDto.getTester_Team_id()).orElse(new TeamMember());
+        Module module = moduleRepository.findById(moduleDto.getId()).get();
+        TeamMember developer = memberRepo.findById(moduleDto.getDeveloper_Team_id()).get();
+        TeamMember tester = memberRepo.findById(moduleDto.getTester_Team_id()).get();
         module.setName(moduleDto.getName());
         module.setAssignedTester(tester.getName());
         module.setAssignedDeveloper(developer.getName());
