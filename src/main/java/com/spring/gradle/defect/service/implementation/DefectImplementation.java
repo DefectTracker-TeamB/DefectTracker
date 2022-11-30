@@ -29,8 +29,8 @@ public class DefectImplementation implements DefectService {
     @Autowired  WSService service;
     @Autowired NotificationImplementation MNotificationService;
 	final DateFormat DATE_FORMATTER = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a ");
-	static String message1="Assaigned A New Defect..!";
-	static String message2=" Defect Sucessfully Updated..!";
+	static String message1="Assaigned A New Defect To";
+	static String message2=" Defect Sucessfully Updated By";
     @Autowired
     private ProjectRepository projectRepository;
     @Autowired
@@ -60,10 +60,10 @@ public class DefectImplementation implements DefectService {
         defectRepository.save(defect);
         Notification notific=new Notification();
 		notific.setDefect(defect);
-		notific.setMessage((DATE_FORMATTER.format(new Date()) + module.getAssignedTester()) +"&nbsp" +message1.toString());
+		notific.setMessage((DATE_FORMATTER.format(new Date()) + module.getAssignedTester())+" "+message1.toString()+" "+module.getAssignedTester());
 		MNotificationService.saveNotific(notific);
-        service.notifyFrontend((DATE_FORMATTER.format(new Date()) + module.getAssignedTester()) +"&nbsp" +message1.toString());
-       // service.notifyFrontend((DATE_FORMATTER.format(new Date()) + module.getAssignedTester()) +"&nbsp" +message1.toString());
+        service.notifyFrontend((DATE_FORMATTER.format(new Date()) + module.getAssignedTester())+" "+message1.toString()+" "+module.getAssignedTester());
+      
     }
 
     // get all
@@ -107,7 +107,11 @@ public class DefectImplementation implements DefectService {
         defect.setModule(module);
         defect.setProject(project);
         defectRepository.save(defect);
-        service.notifyFrontend((DATE_FORMATTER.format(new Date()) + module.getAssignedTester()) +"&nbsp" +message2.toString());
+        Notification notific=new Notification();
+        notific.setDefect(defect);
+		notific.setMessage((DATE_FORMATTER.format(new Date())+""+message2.toString()+" "+ module.getAssignedTester()));
+		MNotificationService.saveNotific(notific);
+        service.notifyFrontend((DATE_FORMATTER.format(new Date())+""+message2.toString()+" "+  module.getAssignedTester()));
     }
 
     @Override

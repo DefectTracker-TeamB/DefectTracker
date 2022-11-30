@@ -39,6 +39,7 @@ public class Defect {
     private Project project;
     
     @OneToMany(mappedBy = "defect",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JsonIgnore
 	private List<Notification> notification=new ArrayList<>();	
 
 

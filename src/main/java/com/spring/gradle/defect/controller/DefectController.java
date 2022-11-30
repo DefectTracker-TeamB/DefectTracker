@@ -17,6 +17,7 @@ public class DefectController {
 
     @Autowired
     DefectService defectService;
+//    @Autowired MNotificationService mnotificationService;
 
 
     // Create defect
@@ -46,6 +47,7 @@ public class DefectController {
     @PutMapping(Constants.PUT_DEFECT)
     public ResponseEntity<Object> updateDefect(@RequestBody DefectDto defectDto) {
         defectService.updateDefect(defectDto);
+        //mnotificationService.saveNotific(notification);
         return ResponseEntity.ok().body("Successfully edited");
 
     }

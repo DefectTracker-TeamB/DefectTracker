@@ -44,8 +44,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     private static final String[] PM_AUTH_LIST={"/members/**","/project/**","/module/**"};
     private static final String[] DEVELOPER_AUTH_LIST={"/defect/getAll","/defect/get/{id}"
             ,"/defect/status","/release/**"};
-    private static final String[] QA_AUTH_LIST={"/defect/**","/smokeTest/**","/defect/getAll",
-            "/defect/get/{id}","/defect/status"};
+    private static final String[] QA_AUTH_LIST={"/defect/**","/smokeTest/saveTest","/defect/getAll",
+            "/defect/get/{id}","/defect/status","/smokeTest/**"};
 
     @Autowired
     private CustomUserDetails userService;
@@ -74,13 +74,14 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().disable().cors().disable()
                 .authorizeRequests()
                 .antMatchers(AUTH_WHITELIST).permitAll()
+        
                 .antMatchers("/user/**").permitAll()
                 .antMatchers(ADMIN_AUTH_LIST).hasRole("ADMIN")
                 .antMatchers(PM_AUTH_LIST).hasRole("PM")
                 .antMatchers(DEVELOPER_AUTH_LIST).hasRole("DEVELOPER")
                 .antMatchers(QA_AUTH_LIST).hasRole("QA")
                 .anyRequest()
-                .authenticated()
+               .authenticated()
                 .and().exceptionHandling()
                 .accessDeniedHandler(handler)
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
