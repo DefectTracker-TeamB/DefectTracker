@@ -36,7 +36,7 @@ public class StatusController {
 
     // Get Status
     @GetMapping(Constants.GET_SATATUS)
-    public ResponseEntity<Object> getStatusById(@PathVariable Long id) {
+    public ResponseEntity<Object> getStatusById(@PathVariable int id) {
         return ResponseEntity.ok(statusService.getStatusById(id));
     }
 
@@ -50,7 +50,7 @@ public class StatusController {
 
     // Delete
     @DeleteMapping(Constants.DELE_STATUS)
-    public ResponseEntity<Object> deleteStatus(@PathVariable Long id) {
+    public ResponseEntity<Object> deleteStatus(@PathVariable int id) {
         statusService.deleteStatus(id);
         return ResponseEntity.ok("Delete Successfully!");
     }
