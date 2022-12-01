@@ -1,6 +1,5 @@
 package com.spring.gradle.defect.service.implementation;
 
-import com.spring.gradle.defect.service.implementation.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
@@ -23,9 +22,16 @@ public class WSService {
         notificationService.sendGlobalNotification();
         messagingTemplate.convertAndSend("/topic/messages", response);
     }
+	
+//	  public void notifyUser(final String id, final String message) {
+//	       	Notification response = new Notification(message);
+//	        notificationService.sendPrivateNotification(id);
+//	        messagingTemplate.convertAndSendToUser(id,"topic/private-messages",response);
+//	    }
 
-	public static void saveNotification(Notification notification) {
-		// TODO Auto-generated method stub
-		
+//	public void notifyFrontend(String string) {
+//		// TODO Auto-generated method stub
+//		
+//	}
 	}
-}
+

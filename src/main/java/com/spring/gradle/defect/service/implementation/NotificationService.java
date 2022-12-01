@@ -22,4 +22,12 @@ public class NotificationService {
 
         messagingTemplate.convertAndSend("/topic/global-notifications", response);
     }
+
+//    public void sendPrivateNotification(final String userId) {
+//        Notification message = new Notification("Private Notification");
+//
+//        messagingTemplate.convertAndSendToUser(userId,"/topic/private-notifications", message);   
+//}
+
+
 }

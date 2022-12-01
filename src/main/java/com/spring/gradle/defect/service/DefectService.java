@@ -3,11 +3,13 @@ package com.spring.gradle.defect.service;
 import com.spring.gradle.defect.dto.DefectDto;
 import com.spring.gradle.defect.dto.StatusDto;
 import com.spring.gradle.defect.entity.Defect;
+import com.spring.gradle.defect.entity.Notification;
 
 import java.util.List;
 
 public interface DefectService {
 
+	//void saveDefect(DefectDto defectDto, Notification notification);
     void saveDefect(DefectDto defectDto);
 
     List<Defect> getAllDefect();

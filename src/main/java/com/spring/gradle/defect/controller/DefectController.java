@@ -2,6 +2,9 @@ package com.spring.gradle.defect.controller;
 
 import com.spring.gradle.defect.dto.DefectDto;
 import com.spring.gradle.defect.dto.StatusDto;
+
+import com.spring.gradle.defect.entity.Notification;
+
 import com.spring.gradle.defect.service.DefectService;
 import com.spring.gradle.defect.util.Constants;
 
@@ -14,6 +17,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/defect")
 @RestController
 public class DefectController {
+
+
+
 
 	@Autowired
 	DefectService defectService;
@@ -83,5 +89,6 @@ public class DefectController {
 		log.error("Unable to change the defect status", defectService);
 		return ResponseEntity.ok("status changed");
 	}
+
 
 }
