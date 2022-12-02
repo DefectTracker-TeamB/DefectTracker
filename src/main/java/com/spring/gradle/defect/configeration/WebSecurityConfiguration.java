@@ -73,20 +73,20 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().cors().disable()
                 .authorizeRequests()
-                .antMatchers(AUTH_WHITELIST).permitAll();
+                .antMatchers(AUTH_WHITELIST).permitAll()
         
-//                .antMatchers("/user/**").permitAll()
-//                .antMatchers(ADMIN_AUTH_LIST).hasRole("ADMIN")
-//                .antMatchers(PM_AUTH_LIST).hasRole("PM")
-//                .antMatchers(DEVELOPER_AUTH_LIST).hasRole("DEVELOPER")
-//                .antMatchers(QA_AUTH_LIST).hasRole("QA")
-//                .anyRequest()
-//               .authenticated()
-//                .and().exceptionHandling()
-//                .accessDeniedHandler(handler)
-//                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-//
-//        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+             .antMatchers("/user/**").permitAll()
+              .antMatchers(ADMIN_AUTH_LIST).hasRole("ADMIN")
+               .antMatchers(PM_AUTH_LIST).hasRole("PM")
+                .antMatchers(DEVELOPER_AUTH_LIST).hasRole("DEVELOPER")
+                .antMatchers(QA_AUTH_LIST).hasRole("QA")
+                .anyRequest()
+               .authenticated()
+                .and().exceptionHandling()
+                .accessDeniedHandler(handler)
+                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
+        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
 
