@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
 import java.util.List;
 
 @Entity
@@ -12,45 +14,43 @@ import java.util.List;
 @Setter
 public class Project {
 
-    /**
-     *
-     */
+	/**
+	 *
+	 */
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+	@NotNull(message = "Project name shouldn't be null")
+	private String name;
 
+	@NotNull(message = "startDate shouldn't be null")
+	private String startDate;
 
-    private String name;
+	@NotNull(message = "endDate shouldn't be null")
+	private String endDate;
 
+	@NotNull(message = "description shouldn't be null")
+	private String description;
 
-    private String startDate;
+	@NotNull(message = "uploadFile shouldn't be null")
+	private String uploadFile;
 
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "project", cascade = CascadeType.ALL)
+	@JsonManagedReference
+	private List<TeamMember> teamMembers;
 
-    private String endDate;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "project", cascade = CascadeType.ALL)
+	@JsonManagedReference
+	private List<Module> modules;
 
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "project")
+	@JsonManagedReference
+	private List<Releases> releases;
 
-    private String description;
-
-
-    private String uploadFile;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "project", cascade = CascadeType.ALL)
-    @JsonManagedReference
-    private List<TeamMember> teamMembers;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "project", cascade = CascadeType.ALL)
-    @JsonManagedReference
-    private List<Module> modules;
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "project")
-    @JsonManagedReference
-    private List<Releases> releases;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "project", cascade = CascadeType.ALL)
-    @JsonManagedReference
-    private List<Defect> defects;
-
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "project", cascade = CascadeType.ALL)
+	@JsonManagedReference
+	private List<Defect> defects;
 
 }

@@ -22,6 +22,10 @@ public class Notification implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "defect_Id",nullable = false)
 	private Defect defect;
+
+//	@ManyToOne
+//	@JoinColumn(name = "module_Id",nullable = false)
+//	private Module module1;
 	
 	public Defect getDefect() {
 		return defect;
@@ -50,6 +54,16 @@ public class Notification implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
+	
+
+//	public Module getModule() {
+//		return module1;
+//	}
+//
+//	public void setModule(Module module) {
+//		this.module1 = module;
+//	}
 
 	public Notification() {
 		
@@ -64,7 +78,7 @@ public class Notification implements Serializable {
 	public Notification(String string) {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	
 
 }

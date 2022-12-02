@@ -32,7 +32,7 @@ public class ProjectServiceImplementation implements ProjectService {
         project.setUploadFile(projectDto.getUploadFile());
         projectRepository.save(project);
         service.notifyFrontend((DATE_FORMATTER.format(new Date()) + projectDto.getName() +"&nbsp" +message3.toString()));
-        
+       // service.notifyUser(message3, message3);
 
     }
 

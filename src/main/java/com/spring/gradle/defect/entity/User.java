@@ -12,6 +12,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.servlet.SessionTrackingMode;
+import javax.validation.constraints.NotNull;
+
 import java.util.*;
 
 @Entity
@@ -23,10 +25,20 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int emp_id;
+    
+    @NotNull(message = "User name shouldn't be null")
     private String name;
+    
+    @NotNull(message = "username shouldn't be null")
     private String username;
+    
+    @NotNull(message = "password shouldn't be null")
     private String password;
+    
+    @NotNull(message = "availability shouldn't be null")
     private int availability;
+    
+    @NotNull(message = "Designation shouldn't be null")
     private String Designation;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user", orphanRemoval = true)

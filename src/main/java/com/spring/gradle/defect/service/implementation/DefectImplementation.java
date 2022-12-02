@@ -26,15 +26,20 @@ public class DefectImplementation implements DefectService {
 
     @Autowired
     private DefectRepository defectRepository;
+    
     @Autowired  WSService service;
+    
     @Autowired NotificationImplementation MNotificationService;
 	final DateFormat DATE_FORMATTER = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a ");
 	static String message1="Assaigned A New Defect To";
 	static String message2=" Defect Sucessfully Updated By";
+	
     @Autowired
     private ProjectRepository projectRepository;
+    
     @Autowired
     private ModuleRepository moduleRepository;
+    
     @Autowired
     private ReleaseRepository releaseRepository;
 
@@ -58,11 +63,12 @@ public class DefectImplementation implements DefectService {
         defect.setModule(module);
         defect.setProject(project);
         defectRepository.save(defect);
+        
         Notification notific=new Notification();
 		notific.setDefect(defect);
-		notific.setMessage((DATE_FORMATTER.format(new Date()) + module.getAssignedTester())+" "+message1.toString()+" "+module.getAssignedTester());
+		notific.setMessage((DATE_FORMATTER.format(new Date()) + module.getAssignedTester())+" "+message1.toString()+" "+module.getAssignedDeveloper());
 		MNotificationService.saveNotific(notific);
-        service.notifyFrontend((DATE_FORMATTER.format(new Date()) + module.getAssignedTester())+" "+message1.toString()+" "+module.getAssignedTester());
+        service.notifyFrontend((DATE_FORMATTER.format(new Date()) + module.getAssignedTester())+" "+message1.toString()+" "+module.getAssignedDeveloper());
       
     }
 

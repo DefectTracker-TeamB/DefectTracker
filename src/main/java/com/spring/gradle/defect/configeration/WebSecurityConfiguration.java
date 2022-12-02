@@ -39,6 +39,13 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
             "/swagger-ui/**",
             "/webjars/**",
             "/authenticate/**",
+            "/webjars/**",
+            "/webjars/jquery/jquery.min.js**",
+            "/webjars/sockjs-client/sockjs.min.js/**",
+            "/webjars/stomp-websocket/stomp.min.js/**",
+            "/script.js",
+            "/index.html/**",
+            
     };
     private static final String[] ADMIN_AUTH_LIST={"/roles/**"};
     private static final String[] PM_AUTH_LIST={"/members/**","/project/**","/module/**"};
@@ -77,14 +84,14 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         
 //                .antMatchers("/user/**").permitAll()
 //                .antMatchers(ADMIN_AUTH_LIST).hasRole("ADMIN")
-//                .antMatchers(PM_AUTH_LIST).hasRole("PM")
+//               .antMatchers(PM_AUTH_LIST).hasRole("PM")
 //                .antMatchers(DEVELOPER_AUTH_LIST).hasRole("DEVELOPER")
 //                .antMatchers(QA_AUTH_LIST).hasRole("QA")
-//                .anyRequest()
-//               .authenticated()
-//                .and().exceptionHandling()
+//                //.anyRequest()
+//              //.authenticated()
+//               .and().exceptionHandling()
 //                .accessDeniedHandler(handler)
-//                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//               .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 //
 //        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }

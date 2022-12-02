@@ -12,11 +12,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Service
 public class ModuleServiceImplementation implements ModuleService {
 
+	   @Autowired  WSService service;
+	
+	    @Autowired NotificationImplementation MNotificationService;
+		final DateFormat DATE_FORMATTER = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a ");
+		static String message1="Module created by";
+		static String message2=" Module Sucessfully Updated By";
+	   
     @Autowired
     private ModuleRepository moduleRepository;
     @Autowired
@@ -36,6 +47,28 @@ public class ModuleServiceImplementation implements ModuleService {
         module.setDescription(moduleDto.getDescription());
         module.setProject(project);
         moduleRepository.save(module);
+        
+//        Notification notific=new Notification();
+//        notific.setModule(module);
+//        notific.setMessage((DATE_FORMATTER.format(new Date()) +" "+message1.toString()+" "+module.getAssignedDeveloper()));
+//        MNotificationService.saveNotific(notific);
+//        service.notifyFrontend((DATE_FORMATTER.format(new Date()) +" "+message1.toString()+" "+module.getAssignedDeveloper()));
+//        
+		//notific.se//setDefect(defect);
+	//	notific.//setMessage((DATE_FORMATTER.format(new Date()) + module.getAssignedTester())+" "+message1.toString()+" "+module.getAssignedTester());
+		//MNotificationService.saveNotific(notific);
+        //service.notifyFrontend((DATE_FORMATTER.format(new Date()) + module.getAssignedTester())+" "+message1.toString()+" "+module.getAssignedTester());
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
 
     @Override
