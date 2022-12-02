@@ -37,8 +37,6 @@ public class DefectImplementation implements DefectService {
     private ModuleRepository moduleRepository;
     @Autowired
     private ReleaseRepository releaseRepository;
-
-
     //create
     @Override
     public void saveDefect(DefectDto defectDto) {
@@ -60,10 +58,11 @@ public class DefectImplementation implements DefectService {
         defectRepository.save(defect);
         Notification notific=new Notification();
 		notific.setDefect(defect);
-		notific.setMessage((DATE_FORMATTER.format(new Date()) + module.getAssignedTester())+" "+message1.toString()+" "+module.getAssignedTester());
+		notific.setTo_whome(module.getAssignedDeveloper());
+		notific.setContent((DATE_FORMATTER.format(new Date()) + module.getAssignedTester())+" "+message1.toString()+" "+module.getAssignedDeveloper());
 		MNotificationService.saveNotific(notific);
-        service.notifyFrontend((DATE_FORMATTER.format(new Date()) + module.getAssignedTester())+" "+message1.toString()+" "+module.getAssignedTester());
-      
+        service.notifyFrontend((DATE_FORMATTER.format(new Date()) + module.getAssignedTester())+" "+message1.toString()+" "+module.getAssignedDeveloper());
+        //service.notifyUser(notific.getTo_whome(),(DATE_FORMATTER.format(new Date()) + module.getAssignedTester())+" "+message1.toString());
     }
 
     // get all
@@ -109,9 +108,10 @@ public class DefectImplementation implements DefectService {
         defectRepository.save(defect);
         Notification notific=new Notification();
         notific.setDefect(defect);
-		notific.setMessage((DATE_FORMATTER.format(new Date())+""+message2.toString()+" "+ module.getAssignedTester()));
+		notific.setContent((DATE_FORMATTER.format(new Date())+""+message2.toString()+" "+module.getAssignedDeveloper()));
 		MNotificationService.saveNotific(notific);
-        service.notifyFrontend((DATE_FORMATTER.format(new Date())+""+message2.toString()+" "+  module.getAssignedTester()));
+        service.notifyFrontend((DATE_FORMATTER.format(new Date())+""+message2.toString()+" "+module.getAssignedDeveloper()));
+        //notifyFrontend
     }
 
     @Override

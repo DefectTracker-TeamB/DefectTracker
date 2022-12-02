@@ -2,7 +2,6 @@ package com.spring.gradle.defect.controller;
 
 import com.spring.gradle.defect.dto.DefectDto;
 import com.spring.gradle.defect.dto.StatusDto;
-import com.spring.gradle.defect.entity.Notification;
 import com.spring.gradle.defect.service.DefectService;
 import com.spring.gradle.defect.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
