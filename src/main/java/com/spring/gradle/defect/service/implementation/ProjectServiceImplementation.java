@@ -31,7 +31,7 @@ public class ProjectServiceImplementation implements ProjectService {
         project.setStartDate(projectDto.getStartDate());
         project.setUploadFile(projectDto.getUploadFile());
         projectRepository.save(project);
-        service.notifyFrontend((DATE_FORMATTER.format(new Date()) + projectDto.getName() +"&nbsp" +message3.toString()));
+        //service.notifyFrontend((DATE_FORMATTER.format(new Date()) + projectDto.getName() +"&nbsp" +message3.toString()));
         
 
     }

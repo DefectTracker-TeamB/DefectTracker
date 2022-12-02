@@ -16,10 +16,16 @@ public class NotificationService {
         this.messagingTemplate = messagingTemplate;
     }
     
- 
-    public void sendGlobalNotification() {
-    	Notification response = new Notification(" Notification Sent to all");
+//    public void sendGlobalNotification() {
+//    	Notification response = new Notification(" Notification Sent to all");
+//        messagingTemplate.convertAndSend("/topic/global-notifications", response);
+//    }
 
-        messagingTemplate.convertAndSend("/topic/global-notifications", response);
-    }
+
+    public void sendPrivateNotification(final String id) {
+    	Notification response = new Notification("Private Notification");
+
+        messagingTemplate.convertAndSend("/topic/private-notifications"+id, response);       
+}
+
 }

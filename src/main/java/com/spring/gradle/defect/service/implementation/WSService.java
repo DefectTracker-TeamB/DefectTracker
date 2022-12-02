@@ -17,14 +17,17 @@ public class WSService {
 	        this.notificationService = notificationService;
 	    }
 	    
-	public void notifyFrontend(final String message) {
-        Notification response = new  Notification( message);
-        notificationService.sendGlobalNotification();
-        messagingTemplate.convertAndSend("/topic/messages", response);
-    }
-
-	public static void saveNotification(Notification notification) {
-		// TODO Auto-generated method stub
-		
+//	public void notifyFrontend(final String message) {
+//        Notification response = new  Notification( message);
+//        notificationService.sendGlobalNotification();
+//        messagingTemplate.convertAndSend("/topic/messages", response);
+//    }
+	
+//	
+	  public void notifyUser(final String id, final String message) {
+		  Notification response = new Notification (message);
+	        notificationService.sendPrivateNotification(id);
+	        messagingTemplate.convertAndSend("/topic/private-notifications"+id,response);
+	    }
 	}
-}
+

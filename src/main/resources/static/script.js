@@ -1,10 +1,8 @@
 var stompClient = null;
 var notificationCount = 0;
 $(document).ready(function() {
-    console.log("Index page is ready");
+    console.log(id=this.id,this.innerHTML,"Index page is ready");
     connect();
-
-    
      $("#notifications").click(function() {
         resetNotificationCount();
     });
@@ -16,11 +14,17 @@ function connect() {
     stompClient.connect({}, function (frame) {
         console.log('Connected: ' + frame);
       	updateNotificationDisplay();
+      	
         stompClient.subscribe('/topic/messages', function (message) {
             showMessage(JSON.parse(message.body).content);
         });
        
-       stompClient.subscribe('/topic/global-notifications', function (message) {
+       stompClient.subscribe('/topic/global-notifications' , function (message) {
+            notificationCount = notificationCount + 1;
+            updateNotificationDisplay();
+        });
+        
+        stompClient.subscribe('/topic/private-notifications'+id, function () {
             notificationCount = notificationCount + 1;
             updateNotificationDisplay();
         });
